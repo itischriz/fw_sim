@@ -1,0 +1,433 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        #canvas {
+            display: block;
+            cursor: crosshair;
+        }
+        
+        #inventory {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, transparent, rgba(20, 20, 30, 0.95));
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            backdrop-filter: blur(10px);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .item {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, #2a2a3a, #1a1a2a);
+            border: 2px solid #444;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+            border-color: #888;
+        }
+        
+        .item.selected {
+            background: linear-gradient(145deg, #4a4aff, #3030dd);
+            border-color: #6666ff;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(100, 100, 255, 0.6);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                box-shadow: 0 0 30px rgba(100, 100, 255, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(100, 100, 255, 0.9);
+            }
+        }
+        
+        .item-name {
+            font-size: 10px;
+            color: #aaa;
+            margin-top: 5px;
+            text-align: center;
+        }
+        
+        .lighter {
+            background: linear-gradient(145deg, #ff6600, #cc4400);
+        }
+        
+        .lighter.selected {
+            background: linear-gradient(145deg, #ff8800, #ff4400);
+            animation: flame 0.5s infinite;
+        }
+        
+        @keyframes flame {
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.3);
+            }
+        }
+        
+        .placed-firework {
+            position: absolute;
+            font-size: 40px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            animation: place 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+        
+        @keyframes place {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(180deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
+        }
+        
+        .placed-firework.lit {
+            animation: ignite 0.5s ease infinite;
+        }
+        
+        @keyframes ignite {
+            0%,
+            100% {
+                filter: drop-shadow(0 0 10px rgba(255, 100, 0, 0.8)) brightness(1.2);
+            }
+            50% {
+                filter: drop-shadow(0 0 20px rgba(255, 150, 0, 1)) brightness(1.5);
+            }
+        }
+        
+        #status {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .separator {
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(180deg, transparent, #444, transparent);
+        }
+        
+        .fuse {
+            position: absolute;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6600, #ff9900);
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 0 0 10px #ff6600;
+        }
+        
+        .fuse-spark {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffff00;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #ff6600, 0 0 30px #ffff00;
+            animation: spark 0.2s infinite;
+            right: -5px;
+            top: -3px;
+        }
+        
+        @keyframes spark {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.7;
+            }
+        }
+        
+        #menuBtn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, #2a2a3a, #1a1a2a);
+            border: 2px solid #444;
+            border-radius: 12px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        #menuBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        #inventoryMenu {
+            position: fixed;
+            top: 0;
+            left: -400px;
+            width: 380px;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(20, 20, 30, 0.98), rgba(10, 10, 20, 0.98));
+            backdrop-filter: blur(20px);
+            border-right: 2px solid rgba(255, 255, 255, 0.1);
+            transition: left 0.4s ease;
+            z-index: 999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        #inventoryMenu.open {
+            left: 0;
+        }
+        
+        .menu-header {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .menu-category {
+            margin-bottom: 25px;
+        }
+        
+        .category-title {
+            font-size: 16px;
+            color: #aaa;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        
+        .menu-item {
+            background: linear-gradient(145deg, #2a2a3a, #1a1a2a);
+            border: 2px solid #444;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: grab;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .menu-item:active {
+            cursor: grabbing;
+        }
+        
+        .menu-item:hover {
+            transform: scale(1.05);
+            border-color: #888;
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .menu-item-icon {
+            font-size: 36px;
+        }
+        
+        .menu-item-name {
+            font-size: 11px;
+            color: #aaa;
+            text-align: center;
+        }
+        
+        .menu-item-speed {
+            font-size: 9px;
+            color: #666;
+        }
+        
+        .dragging {
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+        
+        @keyframes shake {
+            0% {
+                transform: translate(1px, 1px) rotate(0deg);
+            }
+            10% {
+                transform: translate(-1px, -2px) rotate(-1deg);
+            }
+            20% {
+                transform: translate(-3px, 0px) rotate(1deg);
+            }
+            30% {
+                transform: translate(3px, 2px) rotate(0deg);
+            }
+            40% {
+                transform: translate(1px, -1px) rotate(1deg);
+            }
+            50% {
+                transform: translate(-1px, 2px) rotate(-1deg);
+            }
+            60% {
+                transform: translate(-3px, 1px) rotate(0deg);
+            }
+            70% {
+                transform: translate(3px, 1px) rotate(-1deg);
+            }
+            80% {
+                transform: translate(-1px, -1px) rotate(1deg);
+            }
+            90% {
+                transform: translate(1px, 2px) rotate(0deg);
+            }
+            100% {
+                transform: translate(1px, -2px) rotate(-1deg);
+            }
+        }
+        
+        .shaking {
+            animation: shake 0.2s infinite;
+        }
+        
+        #achievement-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            /* Jetzt rechts */
+            z-index: 1000;
+            background: rgba(40, 40, 50, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #444;
+            font-weight: bold;
+        }
+        
+        #achievement-panel {
+            position: fixed;
+            top: 70px;
+            right: -350px;
+            /* Startet versteckt rechts */
+            width: 320px;
+            max-height: 70vh;
+            background: rgba(15, 15, 20, 0.98);
+            border: 1px solid #444;
+            border-radius: 10px 0 0 10px;
+            /* Rundung links */
+            z-index: 1000;
+            padding: 15px;
+            overflow-y: auto;
+            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        #achievement-panel.open {
+            right: 0;
+        }
+        /* Stil für die Benachrichtigung oben rechts */
+        
+        #achievement-toast {
+            position: fixed;
+            top: 20px;
+            right: -400px;
+            background: #2ecc71;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            z-index: 2000;
+            transition: right 0.5s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .achievement-item {
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #444;
+            /* Standard: Grau */
+            transition: 0.3s;
+            opacity: 0.9;
+        }
+        
+        .achievement-item.unlocked {
+            border-left-color: #2ecc71;
+            /* Erreicht: Grün */
+            background: rgba(46, 204, 113, 0.15);
+            opacity: 1;
+        }
+        
+        .achievement-item.secret {
+            background: rgba(0, 0, 0, 0.3);
+            border-left-style: dashed;
+            color: #888;
+        }
+        
+        .achievement-item.secret.unlocked {
+            filter: none;
+            opacity: 1;
+        }
+        
+        .achievement-title {
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .achievement-desc {
+            font-size: 0.75em;
+            color: #bbb;
+        }
