@@ -1482,13 +1482,13 @@
                         life: 30,
                         maxLife: 30,
                         size: 4,
-                        gravity: 0.6
+                        gravity: 1
                     });
                 }
 
                 curX += jumpDir;
                 jumps++;
-                setTimeout(doJump, 300);
+                setTimeout(doJump, 600);
             };
             doJump();
         }
