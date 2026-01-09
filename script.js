@@ -876,7 +876,9 @@
                     break;
 
                 case 'palm': // 🌴 Palme (Dicke Äste)
-                    standardRocket(250, () => createPalmEffect(fw.x, fw.y - 250, data.colors));
+                    animateRocket(fw.x, fw.y, fw.x, fw.y - 550, () => {
+                        createPalmEffect(fw.x, fw.y - 550, data.colors);
+                    }, 1.5);
                     break;
 
                 case 'crossette': // ✖️ Crossette (Teilt sich in 4)
