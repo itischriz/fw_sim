@@ -249,6 +249,12 @@
                 icon: '🔋',
                 name: 'ChriZ\'s Batterie',
                 colors: ['#ff0000', '#ff6600', '#ffff00', '#00ff00', '#0088ff', '#ff00ff', '#ffffff', '#ffd700']
+            },
+            polenbombe: {
+                icon: '💣',
+                name: 'Polenböller',
+                colors: ['#ff0000', '#ff4500', '#ff8800', '#ffaa00'],
+                desc: '⚠️ WARNUNG: Sehr gefährlich!!!'
             }
         };
 
@@ -391,7 +397,7 @@
                 document.querySelectorAll('.dragging').forEach(el => {
                     if (el.parentNode) el.remove();
                 });
-                
+
                 const type = item.dataset.type;
                 const speed = item.dataset.speed;
 
@@ -1362,6 +1368,130 @@
                         shotCount++;
                     }, 500); // Ein Schuss alle 0.5 Sekunden
                     break;
+                case 'polenbombe':
+                    // Minimales Zischen (0.2 Sek)
+                    for (let i = 0; i < 8; i++) {
+                        setTimeout(() => createSparkle(fw.x, fw.y, ['#ff0000']), i * 25);
+                    }
+
+                    // Nach 0.2 Sek - BOOM
+                    setTimeout(() => {
+                        // Blitz
+                        const flashDiv = document.createElement('div');
+                        flashDiv.style.position = 'fixed';
+                        flashDiv.style.inset = '0';
+                        flashDiv.style.backgroundColor = '#ffffff';
+                        flashDiv.style.zIndex = '99999';
+                        flashDiv.style.opacity = '1';
+                        document.body.appendChild(flashDiv);
+                        setTimeout(() => flashDiv.remove(), 150);
+
+                        // Eine fette Explosion - FERTIG
+                        createExplosion(fw.x, fw.y, ['#ff0000', '#ff6600'], 1200, 30);
+
+                        // UI ZERLEGUNG
+                        setTimeout(() => {
+                            // Canvas vergrößern damit man alles sieht
+                            const canvas = document.getElementById('canvas');
+                            canvas.style.height = '200vh';
+
+                            // ALLE Elemente sammeln - wirklich ALLES
+                            const allElements = [];
+
+                            // Rekursiv alle sichtbaren Elemente sammeln
+                            function collectElements(parent) {
+                                const children = parent.children;
+                                for (let child of children) {
+                                    if (child.offsetWidth > 0 || child.offsetHeight > 0) {
+                                        allElements.push(child);
+                                        collectElements(child);
+                                    }
+                                }
+                            }
+
+                            // Von body aus alles sammeln (außer canvas)
+                            Array.from(document.body.children).forEach(el => {
+                                if (el.id !== 'canvas' && el.offsetWidth > 0) {
+                                    allElements.push(el);
+                                    collectElements(el);
+                                }
+                            });
+
+                            // Jedes Element zerstören
+                            allElements.forEach((el, index) => {
+                                setTimeout(() => {
+                                    const rect = el.getBoundingClientRect();
+
+                                    // Element klonen und original verstecken
+                                    const clone = el.cloneNode(true);
+                                    clone.style.position = 'fixed';
+                                    clone.style.left = rect.left + 'px';
+                                    clone.style.top = rect.top + 'px';
+                                    clone.style.width = rect.width + 'px';
+                                    clone.style.height = rect.height + 'px';
+                                    clone.style.margin = '0';
+                                    clone.style.padding = window.getComputedStyle(el).padding;
+                                    clone.style.zIndex = '10000';
+                                    clone.style.pointerEvents = 'none';
+
+                                    document.body.appendChild(clone);
+                                    el.style.opacity = '0';
+
+                                    // Flugberechnung vom Explosionspunkt
+                                    const centerX = fw.x;
+                                    const centerY = fw.y;
+                                    const elementX = rect.left + rect.width / 2;
+                                    const elementY = rect.top + rect.height / 2;
+
+                                    const dx = elementX - centerX;
+                                    const dy = elementY - centerY;
+                                    const distance = Math.sqrt(dx * dx + dy * dy);
+                                    const angle = Math.atan2(dy, dx);
+
+                                    // Stärkerer Schub für nähere Objekte
+                                    const force = 1500 - Math.min(distance, 1000);
+
+                                    const flyX = Math.cos(angle) * force + (Math.random() - 0.5) * 300;
+                                    const flyY = Math.sin(angle) * force * 0.5 + 800; // Nach unten zum Boden
+                                    const rotation = (Math.random() - 0.5) * 720;
+
+                                    // Flug-Animation
+                                    requestAnimationFrame(() => {
+                                        clone.style.transition = 'all 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                                        clone.style.transform = `translate(${flyX}px, ${flyY}px) rotate(${rotation}deg)`;
+                                    });
+
+                                }, index * 3);
+                            });
+
+                            // RESET BUTTON
+                            setTimeout(() => {
+                                const resetBtn = document.createElement('div');
+                                resetBtn.innerHTML = '🔄 Seite reparieren';
+                                resetBtn.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: #1a1a2a;
+                    color: white;
+                    padding: 20px 40px;
+                    border: 3px solid #ff0000;
+                    border-radius: 12px;
+                    font-size: 24px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    z-index: 100002;
+                    box-shadow: 0 0 30px rgba(255, 0, 0, 0.7);
+                `;
+                                resetBtn.onclick = () => location.reload();
+                                document.body.appendChild(resetBtn);
+                            }, 2200);
+
+                        }, 80);
+
+                    }, 200);
+                    break;
             }
         }
 
@@ -1901,7 +2031,7 @@
         // Initialisierung erst wenn das Fenster geladen ist
         window.onload = () => {
             updateAchievementUI();
-            
+
             // Periodischer Cleanup nur für dragging-Elemente
             setInterval(() => {
                 // Alte dragging-Elemente entfernen (falls sie hängen bleiben)
