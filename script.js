@@ -616,19 +616,7 @@
                 }
             });
 
-            // DER FIX: Wir speichern fw in einer lokalen Konstante für das Timeout
-            const fireworkToLaunch = fw;
-            setTimeout(() => {
-                // Hier nutzen wir die gesicherte Konstante
-                if (typeof launchFirework === 'function') {
-                    launchFirework(fireworkToLaunch);
-                }
-                if (typeof cleanupFirework === 'function') {
-                    cleanupFirework(fireworkToLaunch);
-                }
-            }, 500);
-
-            // 2. Starte das aktuelle Feuerwerk (mit kurzer Verzögerung für den Effekt)
+            // Starte das aktuelle Feuerwerk (mit kurzer Verzögerung für den Effekt)
             setTimeout(() => {
                 launchFirework(fw);
                 cleanupFirework(fw);
