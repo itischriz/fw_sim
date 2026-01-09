@@ -387,6 +387,11 @@
 
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('dragstart', (e) => {
+                // Cleanup von alten dragElements die vielleicht übrig geblieben sind
+                document.querySelectorAll('.dragging').forEach(el => {
+                    if (el.parentNode) el.remove();
+                });
+                
                 const type = item.dataset.type;
                 const speed = item.dataset.speed;
 
@@ -450,6 +455,14 @@
             }
 
             if (dragElement) {
+                dragElement.remove();
+                dragElement = null;
+            }
+        });
+
+        // Sicherstellen dass dragElement bei Abbruch entfernt wird
+        document.addEventListener('dragend', () => {
+            if (dragElement && dragElement.parentNode) {
                 dragElement.remove();
                 dragElement = null;
             }
@@ -680,14 +693,18 @@
         function cleanupFirework(fw) {
             // Entfernt das Feuerwerk vom DOM und aus den Arrays
             const div = document.querySelector(`[data-id="${fw.id}"]`);
-            if (div) div.remove();
+            if (div && div.parentNode) {
+                div.remove();
+            }
 
             // Wir entfernen es aus placedFireworks, damit man es nicht nochmal anklicken kann
             placedFireworks = placedFireworks.filter(f => f.id !== fw.id);
 
             // Verbindungen aufräumen (optional, aber sauberer)
             // Wir löschen nur die visuellen Linien, die Daten brauchen wir nicht mehr
-            document.querySelectorAll(`.fuse[data-from-id="${fw.id}"], .fuse[data-to-id="${fw.id}"]`).forEach(el => el.remove());
+            document.querySelectorAll(`.fuse[data-from-id="${fw.id}"], .fuse[data-to-id="${fw.id}"]`).forEach(el => {
+                if (el.parentNode) el.remove();
+            });
         }
 
 
@@ -1043,7 +1060,7 @@
                     animateRocket(fw.x, fw.y, fw.x, fw.y - 500, () => {
                         // Stufe 1: Der Implosions-Effekt (Partikel ziehen sich kurz zusammen)
                         // Stufe 2: Massive Explosion
-                        const particleCount = 1500; // Massiv erhöht
+                        const particleCount = 5000; // Massiv erhöht
                         for (let i = 0; i < particleCount; i++) {
                             const angle = Math.random() * Math.PI * 2;
                             // Unterschiedliche Geschwindigkeiten für Tiefenwirkung
@@ -1884,4 +1901,12 @@
         // Initialisierung erst wenn das Fenster geladen ist
         window.onload = () => {
             updateAchievementUI();
+            
+            // Periodischer Cleanup nur für dragging-Elemente
+            setInterval(() => {
+                // Alte dragging-Elemente entfernen (falls sie hängen bleiben)
+                document.querySelectorAll('.dragging').forEach(el => {
+                    if (el.parentNode) el.remove();
+                });
+            }, 5000); // Alle 5 Sekunden
         };
