@@ -16,6 +16,7 @@
         let connections = [];
 
         const fuseSpeed = {
+            instant: 0,
             superfast: 100,
             fast: 400,
             medium: 800,
