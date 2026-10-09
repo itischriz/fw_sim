@@ -456,7 +456,7 @@
     <canvas id="canvas"></canvas>
     <canvas id="smoke"></canvas>
     <canvas id="sky"></canvas>
-    <div id="fxPanel"><button id="fxSound" title="Sound">🔊</button><button id="fxShow">🎬 Show</button><button id="fxFinale">🎆 Finale</button><label title="Wind">🌬️ <input id="fxWindR" type="range" min="-10" max="10" value="2"></label><label title="Zeitlupe">🐌 <input id="fxSlow" type="range" min="15" max="150" value="100"></label><select id="fxPre" title="Tageszeit"><option value="">🕐 Zeit</option><option value="23">🌃 Nacht</option><option value="6.2">🌅 Morgendämmerung</option><option value="12.5">☀️ Tag</option><option value="18.9">🌆 Sonnenuntergang</option></select><input id="fxTime" type="range" min="0" max="24" step="0.1" value="23" title="Tageszeit (0–24 Uhr)"><select id="fxScene" title="Szenerie"><option value="city">🏙️ Stadt</option><option value="mountain">🏔️ Berge</option><option value="sea">🌊 Meer</option><option value="forest">🌲 Wald</option><option value="desert">🏜️ Wüste</option><option value="none">∅ Frei</option></select><select id="fxSky" title="Himmel"><option value="normal">✨ Normal</option><option value="milky">🌌 Milchstraße</option><option value="aurora">🟢 Polarlicht</option><option value="blood">🔴 Blutmond</option></select><button id="fxSkyB" title="Nachthimmel an/aus">🌃</button></div>
+    <div id="fxPanel"><button id="fxSound" title="Sound">🔊</button><button id="fxShow">🎬 Zufall</button><button id="fxFinale">🎆 Finale</button><button class="curated-show" data-show="aurora" title="Eine Bucht erwacht unter dem Nordlicht">🌌 Nordlicht</button><button class="curated-show" data-show="ember" title="Eine glühende Schmiede entfacht ein Goldfinale">🔥 Gold & Glut</button><button class="curated-show" data-show="festival" title="Vom Soundcheck zum großen Festival-Drop">🎛️ Festivalstory</button><button class="curated-show" data-show="grand" title="Dichtes Pyro-, CO₂-, Strobe- und Laserfinale">💥 Mega-Finale</button><label title="Wind">🌬️ <input id="fxWindR" type="range" min="-10" max="10" value="2"></label><label title="Zeitlupe">🐌 <input id="fxSlow" type="range" min="15" max="150" value="100"></label><select id="fxPre" title="Tageszeit"><option value="">🕐 Zeit</option><option value="23">🌃 Nacht</option><option value="6.2">🌅 Morgendämmerung</option><option value="12.5">☀️ Tag</option><option value="18.9">🌆 Sonnenuntergang</option></select><input id="fxTime" type="range" min="0" max="24" step="0.1" value="23" title="Tageszeit (0–24 Uhr)"><select id="fxScene" title="Szenerie"><option value="city">🏙️ Stadt</option><option value="mountain">🏔️ Berge</option><option value="sea">🌊 Meer</option><option value="forest">🌲 Wald</option><option value="desert">🏜️ Wüste</option><option value="none">∅ Frei</option></select><select id="fxSky" title="Himmel"><option value="normal">✨ Normal</option><option value="milky">🌌 Milchstraße</option><option value="aurora">🟢 Polarlicht</option><option value="blood">🔴 Blutmond</option></select><button id="fxSkyB" title="Nachthimmel an/aus">🌃</button></div>
     <button id="menuBtn">📦</button>
 
     <div id="inventoryMenu">
@@ -873,11 +873,6 @@
                     <div class="menu-item-name">Schlange</div>
                     <div class="menu-item-speed">⚡ Mittel</div>
                 </div>
-                <div class="menu-item" draggable="true" data-type="mushroom" data-speed="medium">
-                    <div class="menu-item-icon">🍄</div>
-                    <div class="menu-item-name">Pilz</div>
-                    <div class="menu-item-speed">⚡ Mittel</div>
-                </div>
                 <div class="menu-item" draggable="true" data-type="dandelion" data-speed="slow">
                     <div class="menu-item-icon">🌼</div>
                     <div class="menu-item-name">Pusteblume</div>
@@ -1006,11 +1001,6 @@
                     <div class="menu-item-name">Goldstern</div>
                     <div class="menu-item-speed">⚡ Schnell</div>
                 </div>
-                <div class="menu-item" draggable="true" data-type="snowman" data-speed="medium">
-                    <div class="menu-item-icon">⛄</div>
-                    <div class="menu-item-name">Schneemann</div>
-                    <div class="menu-item-speed">⚡ Mittel</div>
-                </div>
             </div>
         </div>
 
@@ -1042,6 +1032,11 @@
                     <div class="menu-item-name">Laser-Scanner</div>
                     <div class="menu-item-speed">⚡ Mittel</div>
                 </div>
+                <div class="menu-item" draggable="true" data-type="laser_fan" data-speed="medium">
+                    <div class="menu-item-icon">🔻</div>
+                    <div class="menu-item-name">Laser-Fächer</div>
+                    <div class="menu-item-speed">⚡ Mittel</div>
+                </div>
             </div>
         </div>
 
@@ -1049,8 +1044,68 @@
             <div class="category-title">🆕 Neu entdeckt</div>
             <div class="menu-items">
                 <div class="menu-item" draggable="true" data-type="organ" data-speed="medium">
-                    <div class="menu-item-icon">🎹</div>
-                    <div class="menu-item-name">Orgelpfeifen</div>
+                    <div class="menu-item-icon">💨</div>
+                    <div class="menu-item-name">CO₂-Jetreihe</div>
+                    <div class="menu-item-speed">⚡ Mittel</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="organ_fan" data-speed="medium">
+                    <div class="menu-item-icon">💨</div>
+                    <div class="menu-item-name">CO₂-Jetfächer</div>
+                    <div class="menu-item-speed">⚡ Mittel</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="organ_stagger" data-speed="slow">
+                    <div class="menu-item-icon">🌫️</div>
+                    <div class="menu-item-name">CO₂-Pulsreihe</div>
+                    <div class="menu-item-speed">⚡ Langsam</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="organ_cross" data-speed="medium">
+                    <div class="menu-item-icon">🌫️</div>
+                    <div class="menu-item-name">CO₂-Jetwechsel</div>
+                    <div class="menu-item-speed">⚡ Mittel</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="organ_cascade" data-speed="slow">
+                    <div class="menu-item-icon">🌫️</div>
+                    <div class="menu-item-name">CO₂-Jetkaskade</div>
+                    <div class="menu-item-speed">⚡ Langsam</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="comet_fan" data-speed="medium">
+                    <div class="menu-item-icon">☄️</div>
+                    <div class="menu-item-name">Kometen-Fächer</div>
+                    <div class="menu-item-speed">⚡ Mittel</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="mine_fan" data-speed="fast">
+                    <div class="menu-item-icon">🌋</div>
+                    <div class="menu-item-name">Minen-Fächer</div>
+                    <div class="menu-item-speed">⚡ Schnell</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="roman_candle_fan" data-speed="medium">
+                    <div class="menu-item-icon">🎆</div>
+                    <div class="menu-item-name">Römisches Licht-Fächer</div>
+                    <div class="menu-item-speed">⚡ Mittel</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="salute_sequence" data-speed="slow">
+                    <div class="menu-item-icon">🎖️</div>
+                    <div class="menu-item-name">Salutfolge</div>
+                    <div class="menu-item-speed">⚡ Langsam</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="stage_moving_heads" data-speed="medium">
+                    <div class="menu-item-icon">🎛️</div>
+                    <div class="menu-item-name">Moving Heads</div>
+                    <div class="menu-item-speed">⚡ Mittel</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="stage_colorwash" data-speed="slow">
+                    <div class="menu-item-icon">🎨</div>
+                    <div class="menu-item-name">Farbwash</div>
+                    <div class="menu-item-speed">⚡ Langsam</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="stage_strobe" data-speed="fast">
+                    <div class="menu-item-icon">⚡</div>
+                    <div class="menu-item-name">Stroboskop-Beat</div>
+                    <div class="menu-item-speed">⚡ Schnell</div>
+                </div>
+                <div class="menu-item" draggable="true" data-type="stage_blinder" data-speed="medium">
+                    <div class="menu-item-icon">🔆</div>
+                    <div class="menu-item-name">Blinder-Fächer</div>
                     <div class="menu-item-speed">⚡ Mittel</div>
                 </div>
             </div>
@@ -1244,11 +1299,6 @@
                     <div class="menu-item-icon">🧨</div>
                     <div class="menu-item-name">Böller-Inferno</div>
                     <div class="menu-item-speed">⚡ Schnell</div>
-                </div>
-                <div class="menu-item" draggable="true" data-type="laser_inferno" data-speed="medium">
-                    <div class="menu-item-icon">🔴</div>
-                    <div class="menu-item-name">Laser-Inferno</div>
-                    <div class="menu-item-speed">⚡ Mittel</div>
                 </div>
             </div>
         </div>
@@ -1924,11 +1974,6 @@
                 name: 'Schlange',
                 colors: ['#00e676', '#76ff03', '#ffea00']
             },
-            mushroom: {
-                icon: '🍄',
-                name: 'Pilz',
-                colors: ['#ff1744']
-            },
             dandelion: {
                 icon: '🌼',
                 name: 'Pusteblume',
@@ -2038,11 +2083,6 @@
                 icon: '⭐',
                 name: 'Goldstern',
                 colors: ['#ffd600', '#ffffff']
-            },
-            snowman: {
-                icon: '⛄',
-                name: 'Schneemann',
-                colors: ['#ffffff']
             },
             nuke: {
                 icon: '☢️',
@@ -2755,7 +2795,8 @@
 
         // 1. ERSETZE DEINE ALTE launchFirework FUNKTION HIERMIT:
         function launchFirework(fw) {
-            const data = fireworkData[fw.type];
+            const baseData = fireworkData[fw.type];
+            const data = fw.colors && baseData ? { ...baseData, colors: fw.colors } : baseData;
             if (extraLaunch[fw.type]) { extraLaunch[fw.type](fw, data); return; }
 
             // Standard Raketen-Animation (wird oft wiederverwendet)
@@ -2771,9 +2812,9 @@
                     }, 1.5);
                     break;
                 case 'giant':
-                    standardRocket(350, () => {
-                        createExplosion(fw.x, fw.y - 350, data.colors, 300, 15);
-                        setTimeout(() => createExplosion(fw.x, fw.y - 350, data.colors, 200, 10), 200);
+                    standardRocket(430, () => {
+                        createExplosion(fw.x, fw.y - 430, data.colors, 300, 15);
+                        setTimeout(() => createExplosion(fw.x, fw.y - 430, data.colors, 200, 10), 200);
                     });
                     break;
                 case 'fountain':
@@ -2819,8 +2860,8 @@
                     }
                     break;
                 case 'spiral':
-                    standardRocket(330, () => {
-                        const { spark } = window.fxH, c = data.colors, cx = fw.x, cy = fw.y - 330;
+                    standardRocket(410, () => {
+                        const { spark } = window.fxH, c = data.colors, cx = fw.x, cy = fw.y - 410;
                         for (let i = 0; i < 70; i++) setTimeout(() => {
                             for (let arm = 0; arm < 2; arm++) {
                                 const a = i * 0.28 + arm * Math.PI, r = 6 + i * 3.4, x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r * 0.9, col = c[(i + arm * 2) % c.length];
@@ -2832,8 +2873,8 @@
                     });
                     break;
                 case 'nova':
-                    standardRocket(310, () => {
-                        const { spark } = window.fxH, { flash } = window.fxH2, X = fw.x, Y = fw.y - 310, c = data.colors;
+                    standardRocket(400, () => {
+                        const { spark } = window.fxH, { flash } = window.fxH2, X = fw.x, Y = fw.y - 400, c = data.colors;
                         flash(X, Y, 120);
                         for (let i = 0; i < 90; i++) { const a = i / 90 * 6.283; spark(X, Y, Math.cos(a) * 13, Math.sin(a) * 13, '#ffffff', 36, 3.2, 0, { friction: 0.93 }); }
                         setTimeout(() => createExplosion(X, Y, c, 260, 12), 160);
@@ -2855,8 +2896,8 @@
                     }
                     break;
                 case 'waterfall':
-                    standardRocket(300, () => {
-                        for (let i = 0; i < 48; i++) setTimeout(() => createWaterfall(fw.x + Math.sin(i * 0.3) * 45, fw.y - 300, data.colors), i * 45); setTimeout(() => createSparkle(fw.x, fw.y - 300, data.colors), 48 * 45);
+                    standardRocket(390, () => {
+                        for (let i = 0; i < 48; i++) setTimeout(() => createWaterfall(fw.x + Math.sin(i * 0.3) * 45, fw.y - 390, data.colors), i * 45); setTimeout(() => createSparkle(fw.x, fw.y - 390, data.colors), 48 * 45);
                     });
                     break;
 
@@ -2878,50 +2919,50 @@
                     break;
 
                 case 'peony': // 🌸 Pfingstrose (Sauberer Kreis, keine Schweife)
-                    standardRocket(320, () => createShapeExplosion(fw.x, fw.y - 320, data.colors, 'sphere', 200));
+                    standardRocket(410, () => createShapeExplosion(fw.x, fw.y - 410, data.colors, 'sphere', 200));
                     break;
 
                 case 'chrysanthemum': // 🏵️ Chrysantheme (Mit Schweif)
-                    standardRocket(320, () => createExplosion(fw.x, fw.y - 320, data.colors, 250, 10)); // Standard Explosion hat Schweif
+                    standardRocket(410, () => createExplosion(fw.x, fw.y - 410, data.colors, 250, 10)); // Standard Explosion hat Schweif
                     break;
 
                 case 'willow': // 🌳 Trauerweide (Fällt langsam, langliebig)
-                    standardRocket(370, () => createWillowEffect(fw.x, fw.y - 370, data.colors));
+                    standardRocket(460, () => createWillowEffect(fw.x, fw.y - 460, data.colors));
                     break;
 
                 case 'palm': // 🌴 Palme (Dicke Äste)
-                    standardRocket(250, () => createPalmEffect(fw.x, fw.y - 250, data.colors));
+                    standardRocket(350, () => createPalmEffect(fw.x, fw.y - 350, data.colors));
                     break;
 
                 case 'crossette': // ✖️ Crossette (Teilt sich in 4)
-                    standardRocket(200, () => {
-                        createExplosion(fw.x, fw.y - 200, data.colors, 50, 8);
+                    standardRocket(320, () => {
+                        createExplosion(fw.x, fw.y - 320, data.colors, 50, 8);
                         setTimeout(() => {
-                            createCrossEffect(fw.x, fw.y - 200, data.colors);
+                            createCrossEffect(fw.x, fw.y - 320, data.colors);
                         }, 200);
                     });
                     break;
 
                 case 'strobes': // ⚡ Stroboskop
-                    standardRocket(200, () => createStrobeEffect(fw.x, fw.y - 200, ['#ffffff']));
+                    standardRocket(320, () => createStrobeEffect(fw.x, fw.y - 320, ['#ffffff']));
                     break;
 
                 case 'crackling': // 🔥 Knisterregen
-                    standardRocket(200, () => createCracklingEffect(fw.x, fw.y - 200, data.colors));
+                    standardRocket(320, () => createCracklingEffect(fw.x, fw.y - 320, data.colors));
                     break;
 
                 case 'ringshell': // ⭕ Ring
-                    standardRocket(250, () => createShapeExplosion(fw.x, fw.y - 250, data.colors, 'ring', 150));
+                    standardRocket(350, () => createShapeExplosion(fw.x, fw.y - 350, data.colors, 'ring', 150));
                     break;
 
                 case 'heart': // ❤️ Herz
-                    standardRocket(250, () => createShapeExplosion(fw.x, fw.y - 250, data.colors, 'heart', 150));
+                    standardRocket(350, () => createShapeExplosion(fw.x, fw.y - 350, data.colors, 'heart', 150));
                     break;
 
                 case 'saturn': // 🪐 Saturn (Kugel + Ring)
-                    standardRocket(250, () => {
-                        createExplosion(fw.x, fw.y - 250, [data.colors[0]], 50, 4); // Planet
-                        createShapeExplosion(fw.x, fw.y - 250, [data.colors[1]], 'ring', 120); // Ring
+                    standardRocket(350, () => {
+                        createExplosion(fw.x, fw.y - 350, [data.colors[0]], 50, 4); // Planet
+                        createShapeExplosion(fw.x, fw.y - 350, [data.colors[1]], 'ring', 120); // Ring
                     });
                     break;
 
@@ -3818,7 +3859,7 @@
         window.fxWind = 0.02; window.fxScale = 1;
         // ===== Optimierte Engine: Sprite-Glow, fester 60-Hz-Takt, Partikel-Limit, Rauch-Ebene =====
         const extraLaunch = (() => {
-            const MAXP = 20000, MAXS = 1200, STEP = 1000 / 60;
+            const MAXP = 20000, MAXS = 10000, STEP = 1000 / 60;
             const sc = document.getElementById('smoke'), sx = sc.getContext('2d');
             let W = 0, H = 0;
             const fit = () => { W = canvas.width = sc.width = window.innerWidth; H = canvas.height = sc.height = window.innerHeight; };
@@ -3894,7 +3935,13 @@
             const shape = (x, y, colors, fn, count, power, extra) => {
                 for (let i = 0; i < count; i++) { const [px, py] = fn(i / count * 6.2832); spark(x, y, px * power, py * power, pick(colors), rnd(95, 115), 3.5, 0.03, Object.assign({ friction: 0.95 }, extra)); }
             };
-            const up = (fw, h, fn, smk) => animateRocket(fw.x, fw.y, fw.x, fw.y - h, () => fn(fw.x, fw.y - h), 1.4, smk || null);
+            // Later additions share one height rule: give every launched effect more sky,
+            // while keeping its burst visible on short screens.
+            const up = (fw, h, fn, smk) => {
+                const rise = Math.min(Math.round(h * 1.24), Math.max(120, fw.y - 72));
+                const burstY = fw.y - rise;
+                animateRocket(fw.x, fw.y, fw.x, burstY, () => fn(fw.x, burstY), 1.4, smk || null);
+            };
             window.fxH = { spark, puff, rnd, pick, up, V: { get W() { return W; } } };
             return {
                 smokebomb(fw, d) { for (let i = 0; i < 90; i++) setTimeout(() => puff(fw.x + rnd(-25, 25), fw.y, rnd(-1.4, 1.4), rnd(-1.8, -0.3), pick(d.colors), rnd(22, 42), rnd(150, 230), 0.55, 0.4), i * 30); },
@@ -4025,7 +4072,6 @@
                         const [hx, hy] = pos(t); spark(hx, hy, 0, 0, cs[0], 5, 7, 0); spark(hx + dir * 3, hy - 4, 0, 0, '#ff1744', 5, 2.6, 0); spark(hx + dir * 3, hy + 4, 0, 0, '#ff1744', 5, 2.6, 0);
                         if (t % 6 < 3) { spark(hx + dir * 10, hy, 0, 0, '#ff1744', 4, 2.4, 0); spark(hx + dir * 15, hy - 3, 0, 0, '#ff1744', 4, 2, 0); spark(hx + dir * 15, hy + 3, 0, 0, '#ff1744', 4, 2, 0); }
                         if (t === 89) { createExplosion(hx, hy, cs, 70, 4.5); flash(hx, hy, 50); } }); },
-                mushroom(fw, d) { up(fw, 230, (x, y) => { pts(x, y, [...arc(0, -0.1, 0.9, P, T, 50, d.colors[0]), ...line(-0.9, -0.1, 0.9, -0.1, 22, '#ffcdd2'), ...line(-0.25, -0.1, -0.25, 0.9, 12, '#fff3e0'), ...line(0.25, -0.1, 0.25, 0.9, 12, '#fff3e0'), ...line(-0.45, 0.9, 0.45, 0.9, 10, '#fff3e0'), ...disc(-0.4, -0.5, 0.1, 8, '#ffffff'), ...disc(0.3, -0.6, 0.12, 9, '#ffffff'), ...disc(0, -0.3, 0.08, 6, '#ffffff')], 8); flash(x, y, 40); }); },
                 dandelion(fw, d) { up(fw, 400, (x, y) => { for (let i = 0; i < 150; i++) { const a = rnd(0, T), v = rnd(0.5, 3.5); spark(x, y, Math.cos(a) * v, Math.sin(a) * v, '#ffffff', rnd(170, 260), 1.6, -0.004, { friction: 0.97, flutter: 0.06, twinkle: true }); } pts(x, y, line(0, 0, 0, 1.3, 14, '#69f0ae'), 8); flash(x, y, 40); }); },
                 cobweb(fw, d) { up(fw, 380, (x, y) => { const l = []; for (let k = 0; k < 8; k++) { const a = k * T / 8; l.push(...line(0, 0, Math.cos(a), Math.sin(a), 14, '#cfd8dc')); } for (let r = 1; r <= 5; r++) l.push(...arc(0, 0, r / 5, 0, T, 10 + r * 7, '#eceff1')); still(x, y, l, 95, 170); for (let i = 0; i < 25; i++) spark(x + rnd(-90, 90), y + rnd(-90, 90), 0, 0, '#80d8ff', rnd(40, 170), 2.4, 0, { twinkle: true }); flash(x, y, 40); }); },
                 // --- Show & Arcade ---
@@ -4130,7 +4176,6 @@
                 swirlshell(fw, d) { up(fw, 420, (x, y) => { for (let arm = 0; arm < 5; arm++) for (let k = 0; k < 26; k++) { const b = arm * T / 5 + k * 0.14, v = 1.8 + k * 0.28; spark(x, y, Math.cos(b) * v, Math.sin(b) * v, d.colors[arm % d.colors.length], rnd(95, 115), 3.4, 0.025, { friction: 0.95 }); } flash(x, y, 45); }); },
                 lotus(fw, d) { up(fw, 400, (x, y) => { const pet = (s, col, off) => Array.from({ length: 90 }, (_, i) => { const t = i / 90 * T, r = Math.abs(Math.cos(4 * t + off)) * s; return [r * Math.cos(t), r * Math.sin(t) * 0.8, col]; }); [[1.4, 0], [1.05, 0.2], [0.7, 0.4], [0.4, 0.6]].forEach(([s, off], k) => setTimeout(() => pts(x, y, pet(s, d.colors[k % d.colors.length], off), 8), 150 + k * 300)); setTimeout(() => { pts(x, y, [...disc(0, 0, 0.26, 30, '#ffd600'), ...disc(0, 0, 0.12, 12, '#ff9100')], 8); flash(x, y, 14); }, 0); }); },
                 goldstar(fw, d) { up(fw, 420, (x, y) => { const v = k => [Math.cos(-P / 2 + k * 4 * P / 5), Math.sin(-P / 2 + k * 4 * P / 5)], l = []; for (let k = 0; k < 5; k++) { const [a, b] = v(k), [c, e] = v(k + 1); l.push(...line(a, b, c, e, 18, d.colors[0])); } pts(x, y, [...l, ...disc(0, 0, 0.25, 20, d.colors[1])], 7.5, { twinkle: true }); createExplosion(x, y, [d.colors[1], '#ffffff'], 40, 2); flash(x, y, 50); }); },
-                snowman(fw, d) { up(fw, 400, (x, y) => { const w = '#ffffff', h = '#a1887f'; pts(x, y, [...arc(0, 0.75, 0.42, 0, T, 34, w), ...arc(0, 0.22, 0.32, 0, T, 28, w), ...arc(0, -0.2, 0.22, 0, T, 22, w), ...line(-0.2, -0.38, 0.2, -0.38, 8, h), ...line(-0.12, -0.38, -0.12, -0.7, 8, h), ...line(0.12, -0.38, 0.12, -0.7, 8, h), ...line(-0.12, -0.7, 0.12, -0.7, 6, h), ...line(0, -0.2, 0.3, -0.15, 6, '#ff9100'), [-0.08, -0.26, '#90caf9'], [0.08, -0.26, '#90caf9'], [0, 0.1, '#ff1744'], [0, 0.25, '#ff1744'], [0, 0.4, '#ff1744']], 8); flash(x, y, 40); }); }
             };
         })());
         // ===== Erweiterung 5: Mythisch II & Klassiker 3.0 =====
@@ -4377,8 +4422,28 @@
     window.fxThunder = () => { if (!on || !ac || ac.state !== 'running') return; const n = performance.now(); if (n - (window.fxLastTh || 0) < 450) return; window.fxLastTh = n; ns('highpass', 5000, 1500, 0.12, 0.35); ns('lowpass', 700, 50, 2.2, 0.55, 0.25); const t = ac.currentTime + 0.25, o = ac.createOscillator(), g = ac.createGain(); o.frequency.setValueAtTime(70, t); o.frequency.exponentialRampToValueAtTime(28, t + 1.4); g.gain.setValueAtTime(0.4, t); g.gain.exponentialRampToValueAtTime(0.001, t + 1.6); o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + 1.7); };
     window.fxSparkle = (n = 14, span = 2, delay = 0) => { if (!on || !ac || ac.state !== 'running') return; for (let i = 0; i < n; i++) { const t = ac.currentTime + delay + Math.random() * span, o = ac.createOscillator(), g = ac.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(2200 + Math.random() * 3800, t); g.gain.setValueAtTime(0.07, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.18); o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + 0.2); } };
     window.fxCrackle = (n = 18, span = 1.6) => { if (!on || !ac || ac.state !== 'running') return; for (let i = 0; i < n; i++) ns('bandpass', 1500 + Math.random() * 4000, 800, 0.04, 0.25, Math.random() * span); };
+    const cueLast = Object.create(null);
+    window.fxSoundCue = (kind, strength = 1) => {
+        if (!on || !ac || ac.state !== 'running') return;
+        const n = performance.now(), gap = { jet: 150, laser: 210, stage: 170, ground: 130, sky: 180, smoke: 240 }[kind] || 160;
+        if (n - (cueLast[kind] || 0) < gap) return;
+        cueLast[kind] = n; strength = Math.max(0.25, Math.min(1, strength));
+        if (kind === 'jet') { ns('lowpass', 900, 120, 0.42, 0.12 * strength); ns('highpass', 3200, 700, 0.22, 0.045 * strength, 0.015); }
+        else if (kind === 'laser') {
+            const t = ac.currentTime, o = ac.createOscillator(), g = ac.createGain(); o.type = 'sine';
+            o.frequency.setValueAtTime(340 + Math.random() * 180, t); o.frequency.exponentialRampToValueAtTime(880 + Math.random() * 420, t + 0.22);
+            o.frequency.exponentialRampToValueAtTime(260 + Math.random() * 120, t + 0.48); g.gain.setValueAtTime(0.001, t); g.gain.linearRampToValueAtTime(0.045 * strength, t + 0.04); g.gain.exponentialRampToValueAtTime(0.001, t + 0.5);
+            o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + 0.52);
+        }
+        else if (kind === 'stage') { ns('bandpass', 620, 1450, 0.16, 0.055 * strength); }
+        else if (kind === 'ground') { ns('highpass', 1800, 520, 0.24, 0.075 * strength); window.fxCrackle(5, 0.42); }
+        else if (kind === 'sky') { ns('bandpass', 260, 1900, 0.48, 0.085 * strength); }
+        else if (kind === 'smoke') { ns('lowpass', 520, 150, 0.5, 0.09 * strength); }
+        else if (kind === 'sparkle') { window.fxSparkle(7, 0.35); }
+    };
     const _ce = createExplosion; createExplosion = function (x, y, c, n) { fxBoom(n / 150); return _ce.apply(this, arguments); };
-    const _ar = animateRocket; animateRocket = function () { if (on && ac && ac.state === 'running') ns('bandpass', 400, 2600, 0.6, 0.15); return _ar.apply(this, arguments); };
+    const _cse = createShapeExplosion; createShapeExplosion = function (x, y, c, shape, n) { fxBoom((n || 100) / 190); return _cse.apply(this, arguments); };
+    let lastRocketCue = 0; const _ar = animateRocket; animateRocket = function () { const now = performance.now(); if (on && ac && ac.state === 'running' && now - lastRocketCue > 115) { lastRocketCue = now; ns('bandpass', 340, 2200, 0.58, 0.105); } return _ar.apply(this, arguments); };
     // --- Show-Modus, Finale, Regler ---
     const skip = new Set(['komodo3000', 'kraken', 'supernova', 'chriz_battery', 'finale', 'gravity_well', 'sparkler', 'lighter', 'nuke', 'armageddon', 'blackhole', 'zeus', 'ragnarok', 'eruption']), keys = () => Object.keys(fireworkData).filter(k => !skip.has(k));
     const fire = (type, x) => { try { launchFirework({ type, x, y: innerHeight - 70, id: 'auto' + Math.random() }); } catch (e) {} };
@@ -4418,7 +4483,7 @@
     const lasers = {
         laser_cage(fw, d) { const cx = fw.x, cy = fw.y - 320, W = 240, H = 190; loop(40, 100, t => { const sh = Math.sin(t * 0.08) * 60, ph = t * 0.05; for (let k = -2; k <= 2; k++) { beam(cx + k * 50 + sh, cy - H, cx + k * 50 - sh, cy + H, 16, d.colors[0], 2, 5); beam(cx - W, cy + k * 40 + Math.cos(ph) * 40, cx + W, cy + k * 40 - Math.cos(ph) * 40, 18, d.colors[1], 2, 5); } if (t % 25 === 0) flash(cx, cy, 30); if (t === 99) for (let i = 0; i < 6; i++) setTimeout(() => createExplosion(cx + rnd(-W, W), cy + rnd(-H, H), d.colors, 50, 4), i * 120); }); },
         laser_tunnel(fw, d) { const cx = fw.x, cy = fw.y - 300; loop(35, 90, t => { for (let r = 0; r < 6; r++) { const f = (t * 0.035 + r / 6) % 1, R = 14 + f * f * 230, col = d.colors[r % d.colors.length]; for (let i = 0; i < 36; i++) { const a = i / 36 * T + t * 0.02 * (r % 2 ? 1 : -1); spark(cx + Math.cos(a) * R, cy + Math.sin(a) * R * 0.8, 0, 0, col, 4, 1.4 + f * 2, 0); } } for (let k = 0; k < 8; k++) { const a = k * T / 8 + t * 0.025; beam(cx, cy, cx + Math.cos(a) * 250, cy + Math.sin(a) * 200, 14, d.colors[2 % d.colors.length], 1.8, 4); } if (t === 89) { flash(cx, cy, 90); createExplosion(cx, cy, d.colors, 150, 9); } }); },
-        laser_helix(fw, d) { loop(30, 110, t => { const n = Math.min(62, t * 1.4); for (let j = 0; j < n; j++) { const y = fw.y - 20 - j * 8, w = 45 + j * 0.6, ph = j * 0.33 + t * 0.18; for (let s = 0; s < 2; s++) spark(fw.x + Math.sin(ph + s * P) * w, y, 0, 0, d.colors[s % d.colors.length], 4, 2.6, 0); if (j % 4 === 0) beam(fw.x + Math.sin(ph) * w, y, fw.x + Math.sin(ph + P) * w, y, 8, d.colors[2 % d.colors.length], 1.8, 4); } if (t === 109) { const ty = fw.y - 20 - 61 * 8; flash(fw.x, ty, 60); createExplosion(fw.x, ty, d.colors, 120, 7); } }); },
+        laser_helix(fw, d) { loop(30, 110, t => { const n = Math.min(62, t * 1.4); for (let j = 0; j < n; j++) { const y = fw.y - 20 - j * 8, w = 45 + j * 0.6, ph = j * 0.33 + t * 0.18; for (let s = 0; s < 2; s++) spark(fw.x + Math.sin(ph + s * P) * w, y, 0, 0, d.colors[s % d.colors.length], 4, 2.6, 0); if (j % 4 === 0) beam(fw.x + Math.sin(ph) * w, y, fw.x + Math.sin(ph + P) * w, y, 8, d.colors[2 % d.colors.length], 1.8, 4); } if (t === 109) { const ty = fw.y - 20 - 61 * 8; flash(fw.x, ty, 60); } }); },
         laser_burst(fw, d) { up(fw, 430, (x, y) => { flash(x, y, 50); loop(35, 50, t => { const len = Math.min(t * 7, 250); for (let k = 0; k < 24; k++) { const a = k * T / 24 + t * 0.018 * (k % 2 ? 1 : -1), c = d.colors[k % d.colors.length]; beam(x + Math.cos(a) * 20, y + Math.sin(a) * 20, x + Math.cos(a) * len, y + Math.sin(a) * len, Math.max(4, len / 12 | 0), c, 2.2, 4); if (t % 12 === 11 && k % 2 === 0) createExplosion(x + Math.cos(a) * len, y + Math.sin(a) * len, [c], 12, 2); } if (t === 49) { flash(x, y, 80); createExplosion(x, y, d.colors, 140, 8); } }); }); },
         laser_scanner(fw, d) { const hw = 300; loop(30, 90, t => { const yy = fw.y - 80 - (t < 45 ? t : 90 - t) * 10; beam(fw.x - hw, yy, fw.x + hw, yy, 44, d.colors[0], 2.6, 5); beam(fw.x - hw, yy + 4, fw.x + hw, yy + 4, 22, d.colors[1], 1.6, 4); if (t % 3 === 0) createExplosion(fw.x + rnd(-hw, hw), yy, [pick(d.colors)], 8, 2); if (t === 89) flash(fw.x, yy, 70); }); }
     };
@@ -4553,6 +4618,877 @@
     };
     const D = { bat_inferno: ['☠️', 'Inferno-Batterie', ['#ff1744', '#ffea00', '#00e676', '#2979ff', '#e040fb', '#00e5ff']], bat_cannon: ['💥', 'Kanonen-Batterie', ['#ff9100', '#ffffff', '#ff1744']], bat_ringtower: ['🗼', 'Ring-Turm', ['#00e5ff', '#e040fb', '#ffea00', '#00e676']], flare_inferno: ['🔆', 'Leuchtraketen-Inferno', ['#fffde7', '#ffcc80', '#ff8a65']], boeller_inferno: ['🧨', 'Böller-Inferno', ['#ffffff', '#ffb300']], laser_inferno: ['🔴', 'Laser-Inferno', ['#ff1744', '#00e5ff', '#76ff03', '#e040fb']] };
     Object.keys(fx).forEach(k => { fireworkData[k] = { icon: D[k][0], name: D[k][1], colors: D[k][2] }; extraLaunch[k] = fx[k]; });
+})();
+</script>
+<script>
+/* Neue Orgel-, Batterien- und Laser-Show-Varianten */
+(function () {
+    const { spark, rnd, pick, up } = window.fxH;
+    const { flash, loop } = window.fxH2;
+    const T = Math.PI * 2;
+    const line = (x1, y1, x2, y2, color, size = 2.2, steps = 22) => {
+        for (let i = 0; i <= steps; i++) {
+            const f = i / steps;
+            spark(x1 + (x2 - x1) * f, y1 + (y2 - y1) * f, 0, 0, color, 5, size, 0);
+        }
+    };
+    const burst = (x, y, color, n = 48, speed = 4) => {
+        createExplosion(x, y, [color, '#fff4d6'], n, speed);
+        flash(x, y, 25);
+    };
+    const organSalvo = (fw, d, mode) => {
+        const count = mode === 'cascade' ? 15 : mode === 'cross' ? 12 : mode === 'stagger' ? 11 : 13;
+        for (let i = 0; i < count; i++) {
+            const u = count === 1 ? 0 : i / (count - 1) * 2 - 1;
+            const delay = mode === 'stagger' ? i * 210 : mode === 'cascade' ? (i % 5) * 230 + Math.floor(i / 5) * 420 : i * 115;
+            const height = mode === 'cascade' ? 330 + (i % 5) * 48 : 400 + (1 - Math.abs(u)) * 120;
+            const startX = mode === 'cross' ? fw.x + (i < count / 2 ? -1 : 1) * 170 : fw.x + u * (mode === 'cascade' ? 145 : 35);
+            const endX = mode === 'cross' ? fw.x - u * 310 : fw.x + u * (mode === 'fan' ? 260 : 170);
+            const endY = fw.y - height;
+            const color = d.colors[i % d.colors.length];
+            setTimeout(() => animateRocket(startX, fw.y, endX, endY, () => {
+                burst(endX, endY, color, mode === 'cascade' ? 32 : 48, mode === 'cross' ? 4.5 : 4);
+                if (mode === 'cascade') setTimeout(() => createExplosion(endX, endY, ['#ffffff', color], 22, 2.8), 180);
+            }, 1.45, color), delay);
+        }
+    };
+    const fx = {
+        organ_fan(fw, d) { organSalvo(fw, d, 'fan'); },
+        organ_stagger(fw, d) { organSalvo(fw, d, 'stagger'); },
+        organ_cross(fw, d) { organSalvo(fw, d, 'cross'); },
+        organ_cascade(fw, d) { organSalvo(fw, d, 'cascade'); },
+        laser_fan(fw, d) {
+            const ox = fw.x, oy = fw.y - 35;
+            loop(50, 75, t => {
+                const sweep = Math.sin(t * 0.075) * 0.28;
+                for (let k = -5; k <= 5; k++) {
+                    const a = -Math.PI / 2 + k * 0.105 + sweep, len = 380 + (5 - Math.abs(k)) * 22;
+                    line(ox, oy, ox + Math.cos(a) * len, oy + Math.sin(a) * len, d.colors[(k + 5) % d.colors.length], 2, 18);
+                }
+                if (t % 25 === 0) flash(ox, oy - 100, 24);
+            });
+        },
+        laser_pyramid(fw, d) {
+            const cx = fw.x, cy = fw.y - 180;
+            loop(45, 90, t => {
+                const r = 210, topY = cy - 350, rot = t * 0.035;
+                const base = Array.from({ length: 4 }, (_, i) => [cx + Math.cos(i * Math.PI / 2 + rot) * r, cy + Math.sin(i * Math.PI / 2 + rot) * 80]);
+                for (let i = 0; i < 4; i++) {
+                    const col = d.colors[i % d.colors.length];
+                    line(...base[i], ...base[(i + 1) % 4], col, 2, 18);
+                    line(cx, topY, ...base[i], d.colors[(i + 1) % d.colors.length], 2.5, 26);
+                }
+                if (t % 30 === 0) flash(cx, topY, 30);
+            });
+        },
+        laser_grid(fw, d) {
+            const cx = fw.x, cy = fw.y - 330;
+            loop(45, 90, t => {
+                const shift = Math.sin(t * 0.07) * 65;
+                for (let i = -4; i <= 4; i++) {
+                    const x = cx + i * 62 + shift;
+                    line(x, cy - 180, x, cy + 180, d.colors[(i + 4) % d.colors.length], 1.8, 18);
+                }
+                for (let i = -3; i <= 3; i++) {
+                    const y = cy + i * 52 - Math.cos(t * 0.06) * 45;
+                    line(cx - 290, y, cx + 290, y, d.colors[(i + 2 + d.colors.length) % d.colors.length], 1.8, 24);
+                }
+            });
+        },
+        laser_wave(fw, d) {
+            const cx = fw.x, cy = fw.y - 320;
+            loop(45, 90, t => {
+                for (let row = 0; row < 4; row++) {
+                    let px = cx - 310, py = cy + (row - 1.5) * 64;
+                    for (let i = 1; i <= 34; i++) {
+                        const x = cx - 310 + i * (620 / 34);
+                        const y = cy + (row - 1.5) * 64 + Math.sin(i * 0.42 + t * 0.11 + row * 0.8) * 52;
+                        line(px, py, x, y, d.colors[(i + row) % d.colors.length], 2.4, 3);
+                        px = x; py = y;
+                    }
+                }
+            });
+        },
+        comet_fan(fw, d) {
+            const n = 11;
+            for (let i = 0; i < n; i++) setTimeout(() => {
+                const u = i / (n - 1) * 2 - 1, tx = fw.x + u * 300, ty = fw.y - 470 + Math.abs(u) * 90, c = d.colors[i % d.colors.length];
+                animateRocket(fw.x + u * 18, fw.y, tx, ty, () => burst(tx, ty, c, 34, 3.8), 1.6, c);
+            }, i * 170);
+        },
+        mine_fan(fw, d) {
+            for (let volley = 0; volley < 5; volley++) setTimeout(() => {
+                const baseX = fw.x + (volley - 2) * 34;
+                for (let i = 0; i < 42; i++) {
+                    const a = -Math.PI / 2 + rnd(-0.58, 0.58), v = rnd(7, 13), c = d.colors[i % d.colors.length];
+                    spark(baseX, fw.y - 8, Math.cos(a) * v, Math.sin(a) * v, c, rnd(38, 56), rnd(2.8, 4.2), 0.16, { friction: 0.985, trail: i % 3 === 0, twinkle: i % 7 === 0 });
+                }
+                flash(baseX, fw.y - 8, 28);
+            }, volley * 230);
+        },
+        roman_candle_fan(fw, d) {
+            for (let tube = 0; tube < 7; tube++) {
+                const u = tube / 6 * 2 - 1, angle = u * 0.32;
+                for (let shot = 0; shot < 4; shot++) setTimeout(() => {
+                    const h = 260 + shot * 42, tx = fw.x + Math.sin(angle) * h, ty = fw.y - Math.cos(angle) * h, c = d.colors[(tube + shot) % d.colors.length];
+                    animateRocket(fw.x + u * 16, fw.y, tx, ty, () => burst(tx, ty, c, 22, 3.2), 1.4, c);
+                }, tube * 170 + shot * 480);
+            }
+        },
+        salute_sequence(fw, d) {
+            for (let i = 0; i < 9; i++) setTimeout(() => {
+                const tx = fw.x + (i - 4) * 48, ty = fw.y - 480 - (i % 3) * 35;
+                animateRocket(fw.x + (i - 4) * 8, fw.y, tx, ty, () => {
+                    flash(tx, ty, 75);
+                    createExplosion(tx, ty, [d.colors[i % d.colors.length], '#ffffff'], 38, 3.5);
+                }, 1.5, d.colors[i % d.colors.length]);
+            }, i * 320);
+        }
+    };
+    const data = {
+        organ_fan: ['🎆', 'Orgel-Fächer', ['#ff1744', '#ffd54f', '#ffffff', '#40c4ff']],
+        organ_stagger: ['🎼', 'Orgel-Salve', ['#ff5252', '#ffd54f', '#ffffff']],
+        organ_cross: ['🎇', 'Orgel-Kreuzfächer', ['#40c4ff', '#ff4081', '#ffd54f']],
+        organ_cascade: ['✨', 'Orgel-Kaskade', ['#ffffff', '#ffd54f', '#ff7043']],
+        laser_fan: ['🔻', 'Laser-Fächer', ['#ff1744', '#00e5ff', '#76ff03', '#e040fb']],
+        laser_pyramid: ['🔺', 'Laser-Pyramide', ['#00e5ff', '#ff00e6', '#ffffff']],
+        laser_grid: ['▦', 'Laser-Raster', ['#76ff03', '#00e5ff', '#ffea00', '#e040fb']],
+        laser_wave: ['〰️', 'Laser-Welle', ['#ff1744', '#00e5ff', '#76ff03']],
+        comet_fan: ['☄️', 'Kometen-Fächer', ['#fffde7', '#40c4ff', '#ffd54f']],
+        mine_fan: ['🌋', 'Minen-Fächer', ['#ff9100', '#ffd54f', '#ffffff']],
+        roman_candle_fan: ['🎆', 'Römisches Licht-Fächer', ['#ff1744', '#ffffff', '#00e676']],
+        salute_sequence: ['🎖️', 'Salutfolge', ['#ffd54f', '#ffffff', '#ff7043']]
+    };
+    Object.keys(fx).forEach(type => {
+        fireworkData[type] = { icon: data[type][0], name: data[type][1], colors: data[type][2] };
+        extraLaunch[type] = function (fw, d) { window.fxNW = performance.now() + 6500; return fx[type](fw, d); };
+    });
+})();
+</script>
+<script>
+/* CO₂-Jets, klassische Festival-Laser und Bühnenshowtechnik */
+(function () {
+    const { puff, rnd, pick, spark } = window.fxH;
+    const { flash, loop } = window.fxH2;
+    const { overlay } = window.fxH3;
+    const cols = ['#ffffff', '#f1f6fa', '#dff4ff'];
+    const jet = (x, y, color, strength = 1) => loop(13, 42, t => {
+        for (let i = 0; i < 5; i++) puff(x + rnd(-8, 8), y + rnd(-6, 4), rnd(-1.7, 1.7) * strength, -rnd(7, 13) * strength,
+            i === 0 ? color : pick(cols), rnd(22, 40), rnd(72, 130), rnd(0.26, 0.4), rnd(0.18, 0.42));
+        if (t % 3 === 0) puff(x + rnd(-15, 15), y, rnd(-1, 1), -rnd(2, 5), '#ffffff', rnd(42, 62), 110, 0.16, 0.32);
+    });
+    const jets = (fw, mode) => {
+        const y = innerHeight - 44;
+        const count = mode === 'fan' ? 7 : mode === 'pulse' ? 5 : mode === 'switch' ? 8 : mode === 'cascade' ? 9 : 9;
+        const width = mode === 'fan' ? 330 : mode === 'cascade' ? 390 : 350;
+        for (let i = 0; i < count; i++) {
+            const x = fw.x - width / 2 + width * i / Math.max(1, count - 1);
+            let delay = 0;
+            if (mode === 'fan') delay = Math.abs(i - (count - 1) / 2) * 130;
+            if (mode === 'pulse') delay = (i % 2) * 260;
+            if (mode === 'switch') delay = (i < count / 2 ? i : count - i - 1) * 180;
+            if (mode === 'cascade') delay = i * 115;
+            setTimeout(() => jet(x, y, cols[i % cols.length], mode === 'pulse' ? 1.15 : 1), delay);
+        }
+    };
+    const beam = (x1, y1, x2, y2, color, width = 2.4, dots = 28) => {
+        for (let i = 0; i <= dots; i++) { const f = i / dots; spark(x1 + (x2 - x1) * f, y1 + (y2 - y1) * f, 0, 0, color, 5, width, 0); }
+    };
+    const laserSweep = (fw, d, style) => {
+        window.fxNW = performance.now() + 4200;
+        const ground = innerHeight - 58, sources = [fw.x - 95, fw.x + 95];
+        loop(48, 80, t => {
+            const swing = Math.sin(t * 0.075) * 0.42;
+            if (style === 'scanner') {
+                const y = ground - 170 - (t % 24) * 11;
+                beam(fw.x - 420, y, fw.x + 420, y, d.colors[t % d.colors.length], 3, 52);
+                beam(fw.x - 420, y + 6, fw.x + 420, y + 6, '#e8f7ff', 1.6, 38);
+                return;
+            }
+            for (let head = 0; head < sources.length; head++) {
+                const ox = sources[head], side = head === 0 ? -1 : 1;
+                const spread = style === 'cross' ? 0.88 : style === 'parallel' ? 0.38 : 0.68;
+                const aim = style === 'cross' ? side * -swing : side * 0.23 + swing;
+                const rays = style === 'parallel' ? 6 : 8;
+                for (let k = 0; k < rays; k++) {
+                    const u = k / (rays - 1) * 2 - 1, angle = aim + u * spread, len = 560;
+                    const tx = ox + Math.sin(angle) * len, ty = ground - Math.cos(angle) * len;
+                    beam(ox, ground, tx, ty, d.colors[(k + head * 2 + t % d.colors.length) % d.colors.length], k === 3 ? 2.8 : 2, 26);
+                }
+            }
+        });
+    };
+    const co2 = {
+        organ(fw) { jets(fw, 'row'); }, organ_fan(fw) { jets(fw, 'fan'); }, organ_stagger(fw) { jets(fw, 'pulse'); },
+        organ_cross(fw) { jets(fw, 'switch'); }, organ_cascade(fw) { jets(fw, 'cascade'); }
+    };
+    const co2Names = {
+        organ: ['💨', 'CO₂-Jetreihe'], organ_fan: ['💨', 'CO₂-Jetfächer'], organ_stagger: ['🌫️', 'CO₂-Pulsreihe'],
+        organ_cross: ['🌫️', 'CO₂-Jetwechsel'], organ_cascade: ['🌫️', 'CO₂-Jetkaskade']
+    };
+    Object.keys(co2).forEach(type => {
+        fireworkData[type] = { icon: co2Names[type][0], name: co2Names[type][1], colors: cols };
+        extraLaunch[type] = fw => co2[type](fw);
+    });
+    const laserStyles = {
+        laser_cage: ['Festival-Doppelfächer', 'cross'], laser_tunnel: ['Parallelstrahlen', 'parallel'],
+        laser_helix: ['Laser-Kreuzfächer', 'cross'], laser_burst: ['Strahlen-Fächer', 'fan'],
+        laser_scanner: ['Laser-Scanner', 'scanner'], laser_fan: ['Laser-Fächer', 'fan'], lasers: ['Festival-Beamshow', 'parallel']
+    };
+    Object.entries(laserStyles).forEach(([type, [name, style]]) => {
+        if (!fireworkData[type]) return;
+        fireworkData[type].name = name; fireworkData[type].icon = '🔴';
+        fireworkData[type].colors = ['#ff1744', '#00e5ff', '#ffffff', '#b388ff'];
+        extraLaunch[type] = (fw, d) => laserSweep(fw, d, style);
+    });
+    const stage = {
+        stage_moving_heads(fw, d) { laserSweep(fw, d, 'cross'); },
+        stage_colorwash() {
+            ['#7c4dff', '#00b8d4', '#e91e63', '#ff9100', '#00c853', '#3949ab'].forEach((c, i) => setTimeout(() => overlay(c, 1700, 0.13), i * 900));
+        },
+        stage_strobe(fw) {
+            const xs = [-240, -120, 0, 120, 240];
+            loop(16, 115, t => flash(fw.x + xs[t % xs.length], innerHeight - 120, t % 2 ? 45 : 70));
+        },
+        stage_blinder(fw) {
+            for (let row = 0; row < 3; row++) setTimeout(() => {
+                for (let i = -3; i <= 3; i++) flash(fw.x + i * 95, innerHeight - 115 - row * 28, 55 + (3 - Math.abs(i)) * 8);
+            }, row * 230);
+        }
+    };
+    const stageData = { stage_moving_heads: ['🎛️', 'Moving Heads'], stage_colorwash: ['🎨', 'Farbwash'], stage_strobe: ['⚡', 'Stroboskop-Beat'], stage_blinder: ['🔆', 'Blinder-Fächer'] };
+    Object.keys(stage).forEach(type => {
+        fireworkData[type] = { icon: stageData[type][0], name: stageData[type][1], colors: ['#ffffff', '#00e5ff', '#e040fb'] };
+        extraLaunch[type] = stage[type];
+    });
+})();
+</script>
+<script>
+/* 50 zusätzliche Show- und Pyrotechnik-Effekte, datengetrieben erzeugt */
+(function () {
+    const { spark, puff, rnd, pick } = window.fxH;
+    const { flash, loop } = window.fxH2;
+    const { overlay } = window.fxH3;
+    const specs = [];
+    const add = (family, rows) => rows.forEach(([id, name, icon, colors]) => specs.push({ id, name, icon, colors, family }));
+    add('pyro', [
+        ['pyro_silver_crown','Silberkrone','👑',['#e8f4ff','#ffffff']], ['pyro_gold_palm','Goldpalme','🌴',['#ffd54f','#fff3c4']],
+        ['pyro_crackle_shell','Knister-Schale','🔥',['#ff9100','#ffd54f','#ffffff']], ['pyro_white_willow','Weiße Trauerweide','🌿',['#ffffff','#dff4ff']],
+        ['pyro_floor_fan','Bodenfontänen-Fächer','⛲',['#40c4ff','#e1f5fe']], ['pyro_spinning_wheel','Feuerrad','🌀',['#ff1744','#ffd54f','#ffffff']],
+        ['pyro_glitter_cascade','Glitzer-Kaskade','✨',['#ff1744','#ff9100','#ffea00','#00e676','#2979ff','#e040fb']],
+        ['pyro_color_fountain','Farbfontänen-Reihe','🎆',['#ff4081','#ffffff','#00e5ff']], ['pyro_crackle_mine','Knister-Minenfeld','🌋',['#ff1744','#ffd54f','#40c4ff']],
+        ['pyro_ring_salvo','Ring-Salve','⭕',['#00e5ff','#e040fb','#ffffff']], ['pyro_mine_crown','Kronen-Mine','👑',['#ffd54f','#ffffff']],
+        ['pyro_mine_fan','Fächer-Mine','🌋',['#ff6d00','#ffd54f','#ffffff']], ['pyro_roman_candle','Römisches Licht-Paket','🕯️',['#ff1744','#ffffff','#00e676']],
+        ['pyro_footlight_rack','Kaltfunken-Fußlicht','✴️',['#ff5252','#ffd54f','#ffffff']], ['pyro_strobe_shell','Strobe-Schale','⚡',['#ffffff','#e3f2fd']],
+        ['pyro_color_chrys','Farb-Chrysantheme','🏵️',['#ff1744','#ff9100','#ffd54f','#40c4ff']], ['pyro_spark_rain','Funkenregen','✨',['#ffd54f','#fff8e1','#ffffff']],
+        ['pyro_gold_waterfall','Goldregen-Vorhang','🌠',['#00e5ff','#ff4081','#ffd54f']], ['pyro_ground_chase','Bodenfächer-Chase','🌋',['#ff1744','#ff9100','#ffd54f','#00e676','#2979ff','#e040fb']],
+        ['pyro_mine_finale','Minen-Finale','🎇',['#ffffff','#ffd54f','#ff7043']],
+        ['pyro_wheel_chase','Feuerrad-Chase','🎡',['#ff1744','#ff9100','#ffd54f']],
+        ['pyro_fountain_arc','Fontänen-Bogen','⛲',['#00e5ff','#ffffff','#e040fb']],
+        ['pyro_spark_confetti','Funkenkonfetti','🎉',['#ffd54f','#ffffff','#ff4081']],
+        ['pyro_cold_spark_wave','Kaltfunken-Welle','✨',['#e8f4ff','#ffffff','#80d8ff']],
+        ['pyro_low_crackle','Bodenknister-Kette','🔥',['#ff9100','#ffd54f','#ffffff']],
+        ['pyro_torchline','Fackellinie','🕯️',['#ff6d00','#ffd54f','#ffffff']],
+        ['pyro_cyan_arc','Cyan-Funkenbogen','🌊',['#00e5ff','#80d8ff','#ffffff']],
+        ['pyro_magenta_fan','Rubin-Magenta-Fächer','🌺',['#ff1744','#e040fb','#ffd54f']],
+        ['pyro_amber_cascade','Bernstein-Kaskade','🌟',['#ff6d00','#ffd54f','#fff8e1']],
+        ['pyro_sky_peony','Cyan-Sternblüte','🌸',['#00e5ff','#80d8ff','#ffffff']],
+        ['pyro_sky_crossburst','Rubin-Kreuzburst','✴️',['#ff1744','#e040fb','#ffd54f']],
+        ['pyro_sky_willow','Goldene Sternweide','🌿',['#ffd54f','#fff3c4','#ffffff']]
+    ]);
+    add('co2', [
+        ['co2_wall','Ganzboden-Jetvorhang','🌫️',['#ffffff','#eaf7ff']],
+        ['co2_center_burst','CO₂-Zentralstoß','💨',['#ffffff','#dff4ff']],
+        ['co2_twin_columns','Doppelsäulen','🌫️',['#ffffff','#f1f6fa']], ['co2_wide_fan','Breiter Jetfächer','💨',['#ffffff','#dff4ff']],
+        ['co2_chase_left','Jet-Chase links','🌫️',['#ffffff','#edf7ff']], ['co2_chase_right','Jet-Chase rechts','🌫️',['#ffffff','#edf7ff']],
+        ['co2_pulse_banks','Pulsierende Jet-Bänke','💨',['#ffffff','#eaf7ff']], ['co2_lowfog_crawl','Bodennebel-Welle','☁️',['#eef3f7','#dce7ee']],
+        ['co2_curtain','Dampf-Kaskade','🌫️',['#ffffff','#eaf7ff']], ['co2_colorcloud','Farbiger Nebelstoß','🟣',['#d9d2ff','#e6faff','#f7d9e7']]
+    ]);
+    add('laser', [
+        ['laser_crimson_fan','Rubin-Fächer','🔴',['#ff1744','#ff5252']], ['laser_emerald_scan','Smaragd-Scanner','🟢',['#00e676','#b2ff59']],
+        ['laser_rainbow_beam','Prismen-Fächer','🌈',['#ff1744','#ff9100','#ffea00','#00e676','#2979ff','#e040fb']],
+        ['laser_white_blade','Weißer Lichtkamm','⚪',['#ffffff','#e3f2fd']]
+    ]);
+    add('stage', [
+        ['stage_blue_heads','Blaue Moving Heads','🔷',['#00b0ff','#80d8ff']], ['stage_magenta_wash','Magenta-Wash','🟣',['#d500f9','#ff4081']],
+        ['stage_amber_wash','Amber-Wash','🟠',['#ff9100','#ffd54f']], ['stage_white_strobe','Weißer Strobe','⚪',['#ffffff','#e3f2fd']],
+        ['stage_blinder_chase','Blinder-Chase','🔆',['#fffde7','#ffffff']], ['stage_audience_bath','Publikumslicht','🌈',['#ff1744','#00e676','#2979ff']],
+        ['stage_followspots','Verfolger-Spots','🔦',['#fffde7','#80d8ff']], ['stage_led_chase','LED-Farbjagd','🟪',['#ff4081','#00e5ff','#76ff03']],
+        ['stage_slow_pulse','Langsamer Lichtpuls','💜',['#7c4dff','#00b8d4']], ['stage_color_chase','Farbwechsel-Show','🎨',['#ff1744','#ff9100','#ffd54f','#00e676','#2979ff','#e040fb']]
+    ]);
+    const pyro = (fw, d, i) => {
+        const c = d.colors, x = fw.x, y = fw.y;
+        switch (i) {
+            case 0: for(let k=0;k<110;k++){const a=-Math.PI/2+rnd(-0.7,0.7),v=rnd(3,8);spark(x+rnd(-75,75),y-5,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(32,58),2.6,0.12,{friction:0.987,trail:k%4===0});}break;
+            case 1: for(let k=0;k<135;k++){const a=-Math.PI/2+rnd(-0.6,0.6),v=rnd(3,9);spark(x+rnd(-100,100),y-5,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(36,70),2.8,0.1,{friction:0.988,trail:true});}break;
+            case 2: for(let k=0;k<4;k++)setTimeout(()=>{for(let j=0;j<35;j++){const a=-Math.PI/2+rnd(-0.68,0.68),v=rnd(3,8);spark(x+rnd(-130,130),y-5,Math.cos(a)*v,Math.sin(a)*v,c[(j+k)%c.length],rnd(24,46),2.5,0.18,{friction:0.985,trail:j%4===0});}},k*180);break;
+            case 3: for(let k=0;k<160;k++){const bx=x+rnd(-180,180),a=-Math.PI/2+rnd(-0.25,0.25),v=rnd(2,6);spark(bx,y-rnd(45,100),Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(44,78),2.2,0.08,{friction:0.99,trail:true});}break;
+            case 4: for(let k=0;k<7;k++)setTimeout(()=>{const bx=x+(k-3)*36;for(let j=0;j<27;j++){const a=-Math.PI/2+rnd(-0.52,0.52),v=rnd(4,9);spark(bx,y-4,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(28,48),2.6,0.16,{friction:0.985,trail:j%5===0});}},k*85);break;
+            case 5: for(let k=0;k<100;k++){const a=k/100*Math.PI*2,v=rnd(5,9);spark(x,y-12,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(32,55),2.8,0.12,{friction:0.988,trail:true});}break;
+            case 6: for(let k=0;k<150;k++){const a=-Math.PI/2+rnd(-0.28,0.28),v=rnd(2,7);spark(x+rnd(-210,210),y-rnd(60,180),Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(35,70),2.2,0.12,{friction:0.99,trail:true});}break;
+            case 7: for(let row=0;row<3;row++)setTimeout(()=>{for(let k=0;k<90;k++){const bx=x+(k%9-4)*48,a=-Math.PI/2+rnd(-0.16,0.16),v=rnd(3,8);spark(bx,y-5,Math.cos(a)*v,Math.sin(a)*v,c[(k+row)%c.length],rnd(24,44),2.4,0.16,{friction:0.985});}},row*260);break;
+            case 8: for(let k=0;k<14;k++)setTimeout(()=>{const bx=x+(k-6.5)*48;for(let j=0;j<24;j++){const a=-Math.PI/2+rnd(-0.62,0.62),v=rnd(4,9);spark(bx,y-4,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(22,42),2.5,0.2,{friction:0.98,trail:j%4===0});}},k*75);break;
+            case 9: for(let k=0;k<160;k++){const a=k/160*Math.PI*2,v=rnd(3,8);spark(x+Math.cos(a)*18,y-35+Math.sin(a)*18,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(30,55),2.6,0.12,{friction:0.988,trail:k%3===0});}break;
+            case 10: for(let k=0;k<100;k++){const a=-Math.PI/2+rnd(-0.7,0.7),v=rnd(6,14);spark(x,y-6,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(35,60),3.4,0.17,{friction:0.985,trail:k%4===0});} flash(x,y,80); break;
+            case 11: for(let m=0;m<5;m++)setTimeout(()=>{const bx=x+(m-2)*65;for(let k=0;k<50;k++){const a=-Math.PI/2+rnd(-0.55,0.55),v=rnd(7,13);spark(bx,y-4,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(35,60),3,0.18,{friction:0.985});}flash(bx,y,45);},m*210);break;
+            case 12: for(let k=0;k<9;k++)setTimeout(()=>{const bx=x+(k-4)*35;for(let j=0;j<24;j++){const a=-Math.PI/2+rnd(-0.18,0.18),v=rnd(2,5);spark(bx,y-4,Math.cos(a)*v,Math.sin(a)*v,c[(j+k)%c.length],rnd(18,34),2.1,0.12,{friction:0.99});}},k*150);break;
+            case 13: for(let tube=0;tube<7;tube++)for(let shot=0;shot<3;shot++)setTimeout(()=>{const bx=x+(tube-3)*28;for(let j=0;j<20;j++){const a=-Math.PI/2+rnd(-0.22,0.22),v=rnd(2,5);spark(bx,y-5,Math.cos(a)*v,Math.sin(a)*v,c[(tube+shot)%c.length],rnd(18,32),2.1,0.12,{friction:0.99});}},tube*160+shot*420);break;
+            case 14: for(let k=0;k<7;k++)setTimeout(()=>{flash(x+(k-3)*48,y-70,45);for(let j=0;j<24;j++){const a=-Math.PI/2+rnd(-0.35,0.35),v=rnd(3,7);spark(x+(k-3)*48,y-5,Math.cos(a)*v,Math.sin(a)*v,c[j%c.length],rnd(20,38),2.4,0.13,{friction:0.99});}},k*125);break;
+            case 15: for(let k=0;k<8;k++)setTimeout(()=>{const bx=x+(k-3.5)*55;for(let j=0;j<32;j++){const a=-Math.PI/2+rnd(-0.42,0.42),v=rnd(2,7);spark(bx,y-5,Math.cos(a)*v,Math.sin(a)*v,c[(j+k)%c.length],rnd(24,45),2.4,0.14,{friction:0.987});}},k*140);break;
+            case 16: for(let k=0;k<130;k++){const t=k/130*Math.PI*2;spark(x+rnd(-210,210),y-rnd(90,260),Math.cos(t)*rnd(1,4),rnd(1,3),c[k%c.length],rnd(38,74),2.4,0.08,{friction:0.99,trail:true});}break;
+            case 17: for(let k=0;k<150;k++){const sx=x+rnd(-250,250),sy=y-rnd(180,290);spark(sx,sy,rnd(-1,1),rnd(2,5),c[k%c.length],rnd(48,90),2.5,0.08,{friction:0.99,trail:true});}break;
+            case 18: for(let k=0;k<16;k++)setTimeout(()=>{const bx=x+(k-7.5)*42;for(let j=0;j<20;j++){const a=-Math.PI/2+rnd(-0.38,0.38),v=rnd(3,7);spark(bx,y-4,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(25,46),2.4,0.17,{friction:0.985});}},k*110);break;
+            case 19: for(let k=0;k<20;k++)setTimeout(()=>{const bx=x+(k-9.5)*34;for(let j=0;j<30;j++){const a=-Math.PI/2+rnd(-0.5,0.5),v=rnd(4,9);spark(bx,y-4,Math.cos(a)*v,Math.sin(a)*v,c[(k+j)%c.length],rnd(30,58),2.6,0.16,{friction:0.985,trail:j%4===0});}},k*65);break;
+            case 20: for(let k=0;k<3;k++)setTimeout(()=>{const bx=x+(k-1)*125;for(let j=0;j<75;j++){const a=j/75*Math.PI*2,v=rnd(4,8);spark(bx,y-10,Math.cos(a)*v,Math.sin(a)*v,c[j%c.length],rnd(30,55),2.5,0.12,{friction:0.988,trail:true});}},k*250);break;
+            case 21: for(let k=0;k<13;k++){const bx=x+(k-6)*42;for(let j=0;j<28;j++){const a=-Math.PI/2+rnd(-0.3,0.3),v=rnd(4,8);spark(bx,y-5,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(28,50),2.4,0.14,{friction:0.987});}}break;
+            case 22: for(let k=0;k<90;k++){spark(x+rnd(-250,250),y-rnd(30,200),rnd(-2,2),rnd(-5,-1),c[k%c.length],rnd(25,52),rnd(1.8,3),0.09,{friction:0.985,trail:k%3===0});}break;
+            case 23: for(let row=0;row<5;row++)setTimeout(()=>{for(let j=0;j<80;j++){const bx=x+(j%16-7.5)*30; spark(bx,y-4,-rnd(0.7,1.4),-rnd(3,7),c[(j+row)%c.length],rnd(24,42),2.2,0.13,{friction:0.99});}},row*180);break;
+            case 24: for(let k=0;k<18;k++)setTimeout(()=>{const bx=x+(k-8.5)*32;for(let j=0;j<18;j++){const a=-Math.PI/2+rnd(-0.65,0.65),v=rnd(2,6);spark(bx,y-3,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(20,38),2.2,0.19,{friction:0.98});}},k*80);break;
+            case 25: for(let k=0;k<11;k++){const bx=x+(k-5)*38;for(let j=0;j<17;j++){const a=-Math.PI/2+rnd(-0.12,0.12),v=rnd(2,5);spark(bx,y-4,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(45,80),2.1,0.09,{friction:0.99,trail:true});}}break;
+            case 26: for(let k=0;k<130;k++){const t=k/129, bx=x+(t-0.5)*390, a=-Math.PI/2+(t-0.5)*0.82, v=rnd(3,8);spark(bx,y-8,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(34,68),2.5,0.1,{friction:0.988,trail:k%3===0});}break;
+            case 27: for(let arm=0;arm<3;arm++)setTimeout(()=>{for(let k=0;k<54;k++){const t=k/53, a=-Math.PI/2+(t-0.5)*0.96+(arm-1)*0.17, bx=x+(t-0.5)*310+(arm-1)*42, v=rnd(3,8);spark(bx,y-5,Math.cos(a)*v,Math.sin(a)*v,c[(k+arm)%c.length],rnd(28,54),2.5,0.14,{friction:0.987,trail:k%4===0});}},arm*210);break;
+            case 28: for(let k=0;k<170;k++){const t=k/170, bx=x+rnd(-210,210), sy=y-rnd(55,180), a=-Math.PI/2+rnd(-0.2,0.2), v=rnd(2,6);spark(bx,sy,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(52,94),2.4,0.065,{friction:0.992,trail:true});}break;
+            case 29: for(let k=0;k<7;k++){const sx=x+(k-3)*28;spark(sx,y-5,rnd(-0.5,0.5),-rnd(10,12),c[k%c.length],rnd(58,68),2.8,0.15,{friction:0.995,trail:true,die:p=>createShapeExplosion(p.x,p.y,c,'sphere',105)});}break;
+            case 30: for(let k=0;k<8;k++){const sx=x+(k-3.5)*25;spark(sx,y-5,rnd(-1.5,1.5),-rnd(10,12),c[k%c.length],rnd(58,68),2.7,0.15,{friction:0.995,trail:true,die:p=>{createExplosion(p.x,p.y,[c[k%c.length],c[(k+1)%c.length]],82,5.2);setTimeout(()=>createShapeExplosion(p.x,p.y,c,'ring',54),180);}});}break;
+            case 31: for(let k=0;k<6;k++){const sx=x+(k-2.5)*32;spark(sx,y-5,rnd(-0.7,0.7),-rnd(10,12),c[k%c.length],rnd(58,68),2.8,0.15,{friction:0.995,trail:true,die:p=>createWillowEffect(p.x,p.y,c)});}break;
+            default: for(let k=0;k<60;k++){const a=-Math.PI/2+rnd(-0.5,0.5),v=rnd(3,7);spark(x+rnd(-220,220),y-4,Math.cos(a)*v,Math.sin(a)*v,c[k%c.length],rnd(24,48),2.3,0.15,{friction:0.985});}
+        }
+    };
+    const co2Show = (fw, d, style) => {
+        const y=innerHeight-42,w=innerWidth-80,c=d.colors;
+        const emit=(x,amount=1,vy=1)=>{for(let k=0;k<18*amount;k++)puff(x+rnd(-10,10),y+rnd(-5,3),rnd(-1.5,1.5),-rnd(7,13)*vy,pick(c),rnd(24,42),rnd(75,135),rnd(0.22,0.38),rnd(0.2,0.45));};
+        if(style===0){for(let i=0;i<22;i++)setTimeout(()=>emit(40+(innerWidth-80)*i/21,1.25),i*28);return;}
+        if(style===1){emit(fw.x,5,1.25);return;}
+        if(style===2){emit(fw.x-100,2);emit(fw.x+100,2);return;}
+        if(style===9){for(let k=0;k<160;k++)puff(fw.x+rnd(-220,220),y-rnd(0,80),rnd(-1.5,1.5),-rnd(2,6),pick(c),rnd(30,56),rnd(75,145),0.22,0.3);return;}
+        const n=style===3?11:style===7?15:8;
+        for(let i=0;i<n;i++){
+            let idx=i;if(style===4)idx=i;if(style===5)idx=n-i-1;
+            const x=fw.x-w*0.42+idx*w*0.84/Math.max(1,n-1);
+            const delay=style===3?Math.abs(i-(n-1)/2)*115:style===4||style===5?i*95:style===6?(i%2)*320:style===8?i*65:style===9?Math.abs(i-(n-1)/2)*150:0;
+            setTimeout(()=>{
+                if(style===7){for(let k=0;k<75;k++)puff(x+rnd(-30,30),y+rnd(-12,3),rnd(-1,1),-rnd(0.8,2.8),pick(c),rnd(28,48),rnd(80,140),0.22,0.26);}
+                else emit(x,style===8?2:1,style===3?1.1:1);
+            },delay);
+        }
+    };
+    const laserShow = (fw,d,style) => {
+        window.fxNW=performance.now()+4300;
+        const y=innerHeight-58, x=fw.x, palettes=d.colors;
+        const ray=(x1,y1,x2,y2,c,size=2.2,n=28)=>{for(let j=0;j<=n;j++){const f=j/n;spark(x1+(x2-x1)*f,y1+(y2-y1)*f,0,0,c,5,size,0);}};
+        loop(46,82,t=>{
+            const sweep=Math.sin(t*0.075)*0.42;
+            if(style===1||style===4){const yy=y-120-(t%28)*10;ray(x-500,yy,x+500,yy,palettes[t%palettes.length],style===4?4:2.5,56);if(style===4)ray(x-500,yy+7,x+500,yy+7,'#ffffff',1.5,44);return;}
+            const heads=style===7?3:style===6?1:2;
+            for(let h=0;h<heads;h++){
+                const ox=heads===1?x:x+(h===0?-1:1)*(style===7?180:105), rays=style===8?5:style===9?15:style===5?13:style===6?8:10;
+                for(let k=0;k<rays;k++){
+                    const u=rays===1?0:k/(rays-1)*2-1;
+                    let aim=-0.2+sweep, spread=style===8?0.28:style===9?0.78:style===5?0.7:style===6?0.35:0.62;
+                    if(style===2)aim=(h===0?0.5:-0.5)+u*0.48+sweep*(h===0?1:-1);
+                    if(style===3)aim=-0.2+u*0.4+sweep*0.35;
+                    if(style===7)aim=-0.25+(h-1)*0.42+sweep*(h===1?-1:1);
+                    if(style===8)aim=0.6+u*spread+sweep*0.3;
+                    const a=aim+u*spread, len=style===3?670:style===8?430:560;
+                    const tx=ox+Math.sin(a)*len,ty=y-Math.cos(a)*len;
+                    ray(ox,y,tx,ty,palettes[(k+h+t)%palettes.length],style===4?3:2.2,27);
+                }
+            }
+        });
+    };
+    const existingLaserLooks = {
+        laser_cage: ['Festival-Kreuzfächer', 2, ['#ff00e6','#00e5ff','#ffffff']],
+        laser_tunnel: ['Himmelsfächer', 3, ['#2979ff','#80d8ff','#ffffff']],
+        laser_helix: ['Dreifach-Scanner', 7, ['#ff1744','#00e5ff','#ffffff']],
+        laser_burst: ['Prismenstrahlen', 5, ['#ff1744','#ff9100','#ffea00','#00e676','#2979ff','#e040fb']],
+        laser_scanner: ['Smaragd-Scanner', 1, ['#00e676','#b2ff59','#ffffff']],
+        laser_fan: ['Rubin-Fächer', 0, ['#ff1744','#ff5252','#ffd54f']],
+        lasers: ['Senkrechte Beamshow', 6, ['#ffd54f','#00e676','#2979ff','#ff1744']]
+    };
+    Object.entries(existingLaserLooks).forEach(([type,[name,style,colors]])=>{
+        if(!fireworkData[type])return;
+        fireworkData[type].name=name;fireworkData[type].colors=colors;
+        extraLaunch[type]=(fw,d)=>laserShow(fw,d,style);
+    });
+    const stageShow=(fw,d,style)=>{
+        if(style===1||style===2||style===8){const n=style===8?8:7;for(let i=0;i<n;i++)setTimeout(()=>overlay(d.colors[i%d.colors.length],1600,style===8?0.09:0.12),i*(style===8?430:750));return;}
+        if(style===3||style===4||style===7){loop(style===3?18:12,style===3?110:180,t=>{const count=style===3?5:7;for(let k=0;k<count;k++)if((k+t)%2===0)flash(fw.x+(k-(count-1)/2)*115,innerHeight-115,style===3?50:72);});return;}
+        if(style===0||style===5||style===6||style===9){laserShow(fw,d,style===0?7:style===5?5:style===6?9:3);}
+    };
+    const familyStart={};let familyOffset=0;
+    ['pyro','co2','laser','stage'].forEach(family=>{familyStart[family]=familyOffset;familyOffset+=specs.filter(s=>s.family===family).length;});
+    const laserStyles={laser_crimson_fan:0,laser_emerald_scan:1,laser_rainbow_beam:5,laser_white_blade:4};
+    specs.forEach((s,index)=>{
+        const style=index-familyStart[s.family];fireworkData[s.id]={icon:s.icon,name:s.name,colors:s.colors};
+        extraLaunch[s.id]=(fw,d)=>s.family==='pyro'?pyro(fw,d,style):s.family==='co2'?co2Show(fw,d,style):s.family==='laser'?laserShow(fw,d,laserStyles[s.id]):stageShow(fw,d,style);
+        const item=document.createElement('div');item.className='menu-item';item.draggable=true;item.dataset.type=s.id;item.dataset.speed=s.family==='laser'?'medium':'slow';
+        const icon=document.createElement('div');icon.className='menu-item-icon';icon.textContent=s.icon;
+        const name=document.createElement('div');name.className='menu-item-name';name.textContent=s.name;
+        const speed=document.createElement('div');speed.className='menu-item-speed';speed.textContent=item.dataset.speed==='slow'?'⚡ Langsam':'⚡ Mittel';item.append(icon,name,speed);
+        item.addEventListener('dragstart',e=>{dragElement=document.createElement('div');dragElement.className='placed-firework dragging';dragElement.textContent=s.icon;dragElement.style.fontSize='50px';document.body.appendChild(dragElement);e.dataTransfer.effectAllowed='copy';e.dataTransfer.setData('type',s.id);e.dataTransfer.setData('speed',item.dataset.speed);});
+        item.addEventListener('dragend',()=>{if(dragElement){dragElement.remove();dragElement=null;}});
+        document.getElementById('inventoryMenu').append(item);
+    });
+})();
+</script>
+<script>
+/* Inventar: zusammengehörige Effekte bündeln und unpassende Formen entfernen. */
+(function () {
+    const menu = document.getElementById('inventoryMenu');
+    if (!menu) return;
+    const removedTypes = new Set([
+        'corkscrew','shockrings','helixrocket','spiral','solarflare','poseidon','atom','pulsar','saturn','solarsystem',
+        'snake','ouroboros','peacock','eclipse','fish','matrix','lotus','goldstar','curtain','tripleshell','cartoonbomb',
+        'sunburst','dandelion','brocade','brocade_dx','ringshell','bat_ringtower','laser_inferno','laser_pyramid','laser_grid','laser_wave',
+        'stage_led_chase','stage_blinder_chase','stage_blue_heads','co2_colorcloud',
+        // Diese Kategorie soll nur die drei ausgewählten Formen behalten.
+        'heart','smiley','tree','flower','snowflake','dice','domino','clock','carousel','ferriswheel','crown','diamond','yinyang','spirograph'
+    ]);
+    removedTypes.forEach(type => {
+        delete fireworkData[type];
+        delete extraLaunch[type];
+        menu.querySelectorAll('.menu-item').forEach(item => { if (item.dataset.type === type) item.remove(); });
+    });
+    const displayNames = {
+        organ: 'CO₂-Düsenreihe', organ_fan: 'CO₂-Fächer', organ_stagger: 'CO₂-Pulsdüsen',
+        organ_cross: 'CO₂-Chase', organ_cascade: 'CO₂-Dampfkaskade',
+        co2_wall: 'CO₂-Jetvorhang', co2_center_burst: 'CO₂-Zentralstoß', co2_twin_columns: 'CO₂-Doppelsäulen',
+        co2_wide_fan: 'CO₂-Breitfächer', co2_chase_left: 'CO₂-Chase: links nach rechts',
+        co2_chase_right: 'CO₂-Chase: rechts nach links', co2_pulse_banks: 'CO₂-Pulsbänke',
+        co2_lowfog_crawl: 'Bodennebel-Welle', co2_curtain: 'CO₂-Dampfkaskade',
+        stage_moving_heads: 'Moving-Head-Kreuzfächer', stage_colorwash: 'Farb-Wash',
+        stage_strobe: 'Stroboskop-Beat', stage_blinder: 'Blinder-Fächer',
+        stage_magenta_wash: 'Magenta-Bühnenwash', stage_amber_wash: 'Amber-Bühnenwash',
+        stage_white_strobe: 'Weißer Strobe-Beat', stage_audience_bath: 'Publikums-Wash',
+        stage_followspots: 'Verfolger-Spots', stage_slow_pulse: 'Violett-Cyan-Lichtwelle',
+        stage_color_chase: 'RGB-Strahlen-Choreografie'
+    };
+    Object.entries(displayNames).forEach(([type, name]) => {
+        if (fireworkData[type]) fireworkData[type].name = name;
+        menu.querySelectorAll('.menu-item').forEach(item => {
+            if (item.dataset.type === type) { const label = item.querySelector('.menu-item-name'); if (label) label.textContent = name; }
+        });
+    });
+    const groups = [
+        ['🚀 Raketen & Batterien', new Set(['rocket','giant','battery','multishot','finale','rocketswarm','chriz_battery','komodo3000','bat_inferno','bat_cannon','bat_ringtower','bat_fan_slow','bat_fan_fast','bat_rainbow','bat_sweep','bat_crossette','bat_z','bat_willow','bat_crackle','bat_strobe','bat_comet','bat_mine','bat_peony','bat_chrysanthemum','bat_brocade','bat_fan','bat_v','bat_x','bat_wave','bat_palm','bat_crown','bat_spiral','bat_cake','bat_silver','bat_gold','bat_finale','comet_fan','salute_sequence'])],
+        ['💨 CO₂-Jets & Bodennebel', new Set(['organ','organ_fan','organ_stagger','organ_cross','organ_cascade','co2_wall','co2_center_burst','co2_twin_columns','co2_wide_fan','co2_chase_left','co2_chase_right','co2_pulse_banks','co2_lowfog_crawl','co2_curtain'])],
+        ['🎛️ Lichtshow & Moving Heads', new Set(['stage_moving_heads','stage_colorwash','stage_strobe','stage_blinder','stage_magenta_wash','stage_amber_wash','stage_white_strobe','stage_audience_bath','stage_followspots','stage_slow_pulse','stage_color_chase'])],
+        ['🎆 Neue Pyrotechnik', new Set(['pyro_silver_crown','pyro_gold_palm','pyro_crackle_shell','pyro_white_willow','pyro_floor_fan','pyro_spinning_wheel','pyro_glitter_cascade','pyro_color_fountain','pyro_crackle_mine','pyro_ring_salvo','pyro_mine_crown','pyro_mine_fan','pyro_roman_candle','pyro_footlight_rack','pyro_strobe_shell','pyro_color_chrys','pyro_spark_rain','pyro_gold_waterfall','pyro_ground_chase','pyro_mine_finale','pyro_wheel_chase','pyro_fountain_arc','pyro_spark_confetti','pyro_cold_spark_wave','pyro_low_crackle','pyro_torchline','pyro_cyan_arc','pyro_magenta_fan','pyro_amber_cascade','pyro_sky_peony','pyro_sky_crossburst','pyro_sky_willow'])],
+        ['🎆 Kugelbomben & klassische Effekte', new Set(['peony','chrysanthemum','willow','palm','kamuro','kamuro_dx','chrysanthemum_dx','horsetail','glitter','silvergold','crossette','comet','nova','rainbow','goldrain','starfield','swirlshell','bouquet','cobweb','glassball','crescent'])],
+        ['💖 Formen & Figuren', new Set(['matroschka','countdown','bullseye'])],
+        ['🌿 Natur & Tiere', new Set(['butterfly','fireflies','beehive','phoenix','phoenixrise','dragon','dragoncn','hydra','pegasus','unicorn','genie','worldtree','beeswarm'])],
+        ['🌌 Weltraum & Mystik', new Set(['aurora','galaxy','nebula','ufo','ufoswarm','satellite','ghost','kraken','supernova','nuke','blackhole','gravity_well','zeus','ragnarok','stargate','cosmos','starcollision'])],
+        ['🌀 Bewegung & Lichteffekte', new Set(['spinner','zipper','lightning','tornado','meteors','meteorstrike','satellite','tourbillon','frozen','fractal','arcfountains'])],
+        ['🔴 Festival-Laser', new Set(['laser_cage','laser_burst','laser_helix','laser_tunnel','laser_scanner','laser_fan','lasers','laser_crimson_fan','laser_emerald_scan','laser_white_blade','laser_rainbow_beam'])],
+        ['⛲ Bodenfeuerwerk & Fontänen', new Set(['fountain','volcano','roman','sparkler','waterfall','mine','mine_fan','strobes','crackling','glitter','frog','smokebomb','groundmine','fancake','romancandle','bounce','spinner'])],
+        ['🌫️ Rauch & Leuchteffekte', new Set(['smokerocket','smokewall','smokering','smokebomb','flare_white','flare_trio','flare_salvo','flare_inferno','flaregun','flaregun_triple','flaregun_star','flashbang','paint','confetti'])],
+        ['🎉 Salven, Knall & Finale', new Set(['salute','shockrings','boeller_klassik','boeller_china','boeller_kanone','boeller_heuler','boeller_mega','boeller_inferno','armageddon','eruption','fuse'])]
+    ];
+    const allItems = [...menu.querySelectorAll('.menu-item')].filter(item => !['mushroom','snowman'].includes(item.dataset.type) && !removedTypes.has(item.dataset.type));
+    delete fireworkData.mushroom;
+    delete fireworkData.snowman;
+    delete extraLaunch.mushroom;
+    delete extraLaunch.snowman;
+
+    const oldCategories = [...menu.querySelectorAll(':scope > .menu-category')];
+    const containers = groups.map(([title]) => {
+        const category = document.createElement('section');
+        category.className = 'menu-category';
+        const heading = document.createElement('div');
+        heading.className = 'category-title';
+        heading.textContent = title;
+        const items = document.createElement('div');
+        items.className = 'menu-items';
+        category.append(heading, items);
+        return { category, items };
+    });
+    const assigned = new Set();
+    allItems.forEach(item => {
+        const type = item.dataset.type || '';
+        let groupIndex = groups.findIndex(([, types]) => types.has(type));
+        if (groupIndex < 0) {
+            if (/^laser/.test(type)) groupIndex = 9;
+            else if (/^flare/.test(type)) groupIndex = 11;
+            else if (/^(bat_|battery|rocket|salvo)/.test(type)) groupIndex = 0;
+            else if (/^pyro_/.test(type)) groupIndex = 3;
+            else if (/^boeller|salute|finale/.test(type)) groupIndex = 12;
+            else if (/^(smoke|paint|confetti)/.test(type)) groupIndex = 11;
+            else if (/^(fountain|volcano|mine|ground)/.test(type)) groupIndex = 10;
+            else groupIndex = 4;
+        }
+        containers[groupIndex].items.append(item);
+        assigned.add(item);
+    });
+    oldCategories.forEach(category => category.remove());
+    containers.forEach(({ category, items }) => { if (items.childElementCount) menu.append(category); });
+})();
+</script>
+<script>
+/* Drei feste Show-Choreografien mit dramaturgischem Aufbau statt Zufallsauswahl. */
+(function () {
+    const shows = {
+        aurora: {
+            name: 'Nordlicht über dem Meer', scene: 'sea', sky: 'aurora', hour: '23', duration: 58000,
+            palette: ['#00e5ff','#80d8ff','#ffffff','#b388ff'],
+            events: [
+                [0,'stage_slow_pulse',0.50], [500,'co2_lowfog_crawl',0.50],
+                [1800,'pyro_cold_spark_wave',0.22], [2300,'pyro_cold_spark_wave',0.50], [2800,'pyro_cold_spark_wave',0.78],
+                [4300,'co2_twin_columns',0.30], [5000,'co2_twin_columns',0.70],
+                [6500,'laser_emerald_scan',0.50,['#00e5ff','#80d8ff','#ffffff']],
+                [8200,'pyro_cyan_arc',0.28], [9000,'pyro_cyan_arc',0.72],
+                [10800,'co2_curtain',0.50], [12700,'aurora',0.50],
+                [15100,'pyro_ring_salvo',0.50], [16800,'laser_white_blade',0.50],
+                [18000,'pyro_sky_peony',0.32], [18900,'pyro_sky_peony',0.68],
+                [18700,'pyro_spark_rain',0.33], [19800,'pyro_spark_rain',0.67],
+                [21800,'co2_chase_left',0.25], [23600,'co2_chase_right',0.75],
+                [25400,'pyro_glitter_cascade',0.28], [26200,'pyro_glitter_cascade',0.72],
+                [28100,'laser_rainbow_beam',0.50,['#00e5ff','#80d8ff','#b388ff','#ffffff']],
+                [30100,'pyro_cold_spark_wave',0.20], [30600,'pyro_cold_spark_wave',0.50], [31100,'pyro_cold_spark_wave',0.80],
+                [32600,'co2_wall',0.50], [35000,'pyro_sky_peony',0.24], [35800,'pyro_sky_peony',0.50], [36600,'pyro_sky_peony',0.76], [37700,'stage_colorwash',0.50]
+            ],
+            salvos: [
+                [700,[['co2_chase_left',0.20],['rocket',0.42],['peony',0.73]]],
+                [3900,[['bat_fan_slow',0.50],['willow',0.20],['peony',0.82]]],
+                [7300,[['rocket',0.12],['peony',0.31],['willow',0.57],['rocket',0.88]]],
+                [10600,[['bat_sweep',0.50],['bat_crossette',0.24],['bat_crossette',0.76]]],
+                [13900,[['peony',0.18],['bat_willow',0.39],['peony',0.61],['willow',0.84]]],
+                [17300,[['bat_wave',0.50],['rocket',0.21],['rocket',0.79]]],
+                [20700,[['willow',0.11],['peony',0.30],['bat_x',0.50],['peony',0.70],['willow',0.89]]],
+                [24100,[['bat_z',0.50],['crossette',0.26],['crossette',0.74]]],
+                [27600,[['rocket',0.08],['peony',0.25],['willow',0.44],['peony',0.67],['rocket',0.92]]],
+                [31100,[['bat_v',0.50],['bat_willow',0.18],['bat_willow',0.82]]],
+                [34700,[['peony',0.16],['crossette',0.36],['bat_sweep',0.50],['crossette',0.64],['peony',0.85]]],
+                [38200,[['bat_cake',0.50],['rocket',0.17],['willow',0.39],['willow',0.61],['rocket',0.83]]],
+                [41600,[['bat_willow',0.13],['bat_crossette',0.32],['peony',0.50],['bat_crossette',0.68],['bat_willow',0.87]]],
+                [44700,[['rocket',0.06],['peony',0.19],['willow',0.34],['chrysanthemum',0.51],['willow',0.69],['peony',0.83],['rocket',0.95]]],
+                [47500,[['bat_wave',0.50],['bat_willow',0.14],['bat_crossette',0.31],['bat_crossette',0.69],['bat_willow',0.86]]],
+                [50100,[['rocket',0.04],['peony',0.17],['crossette',0.29],['willow',0.42],['willow',0.58],['crossette',0.71],['peony',0.83],['rocket',0.96]]],
+                [52900,[['bat_finale',0.50],['bat_crossette',0.12],['bat_willow',0.30],['bat_willow',0.70],['bat_crossette',0.88]]]
+            ]
+        },
+        ember: {
+            name: 'Gold & Glut', scene: 'city', sky: 'normal', hour: '20.4', duration: 61000,
+            palette: ['#ff9100','#ffd54f','#fff3c4','#ffffff'],
+            events: [
+                [0,'stage_amber_wash',0.50], [600,'co2_lowfog_crawl',0.50],
+                [1800,'pyro_torchline',0.20], [2300,'pyro_torchline',0.50], [2800,'pyro_torchline',0.80],
+                [4400,'co2_wide_fan',0.50], [6200,'pyro_amber_cascade',0.28], [7200,'pyro_amber_cascade',0.72],
+                [9000,'pyro_gold_waterfall',0.25], [9900,'pyro_gold_waterfall',0.50], [10800,'pyro_gold_waterfall',0.75],
+                [12700,'stage_followspots',0.50], [14600,'pyro_wheel_chase',0.50],
+                [16400,'co2_pulse_banks',0.50], [18100,'pyro_low_crackle',0.25], [18700,'pyro_low_crackle',0.50], [19300,'pyro_low_crackle',0.75],
+                [21100,'pyro_mine_crown',0.30], [21900,'pyro_mine_crown',0.70],
+                [23800,'pyro_spark_rain',0.28], [24700,'pyro_spark_rain',0.50], [25600,'pyro_spark_rain',0.72],
+                [27500,'co2_chase_left',0.20], [29100,'co2_chase_right',0.80],
+                [30900,'pyro_mine_finale',0.32], [31700,'pyro_mine_finale',0.50], [32500,'pyro_mine_finale',0.68],
+                [34500,'pyro_sky_willow',0.28], [35300,'pyro_sky_willow',0.50], [36100,'pyro_sky_willow',0.72],
+                [37200,'stage_white_strobe',0.50], [38500,'co2_wall',0.50], [39700,'pyro_amber_cascade',0.50]
+            ],
+            salvos: [
+                [900,[['rocket',0.16],['palm',0.35],['rocket',0.81]]],
+                [3900,[['bat_fan_fast',0.50],['willow',0.23],['palm',0.73]]],
+                [7100,[['chrysanthemum',0.13],['peony',0.37],['palm',0.68],['rocket',0.90]]],
+                [10400,[['bat_sweep',0.50],['bat_crossette',0.19],['bat_crossette',0.81]]],
+                [13700,[['willow',0.15],['palm',0.33],['bat_z',0.50],['palm',0.77]]],
+                [17100,[['bat_willow',0.12],['chrysanthemum',0.32],['chrysanthemum',0.66],['bat_willow',0.88]]],
+                [20500,[['rocket',0.08],['palm',0.25],['willow',0.44],['palm',0.72],['rocket',0.94]]],
+                [23900,[['bat_v',0.50],['bat_crossette',0.22],['bat_crossette',0.78]]],
+                [27300,[['chrysanthemum',0.13],['willow',0.30],['bat_fan_slow',0.50],['palm',0.73],['chrysanthemum',0.88]]],
+                [30700,[['bat_wave',0.50],['rocket',0.19],['willow',0.42],['palm',0.79]]],
+                [34100,[['bat_cake',0.50],['chrysanthemum',0.14],['palm',0.33],['willow',0.67],['chrysanthemum',0.86]]],
+                [37500,[['rocket',0.06],['willow',0.22],['palm',0.39],['chrysanthemum',0.52],['palm',0.71],['rocket',0.92]]],
+                [40900,[['bat_x',0.50],['bat_willow',0.18],['bat_willow',0.82]]],
+                [44200,[['chrysanthemum',0.10],['palm',0.27],['willow',0.43],['willow',0.57],['palm',0.73],['chrysanthemum',0.90]]],
+                [47400,[['bat_crossette',0.12],['bat_chrysanthemum',0.30],['bat_willow',0.50],['bat_chrysanthemum',0.70],['bat_crossette',0.88]]],
+                [50000,[['rocket',0.05],['palm',0.18],['willow',0.31],['chrysanthemum',0.43],['chrysanthemum',0.57],['willow',0.69],['palm',0.82],['rocket',0.95]]],
+                [52600,[['bat_wave',0.50],['bat_willow',0.12],['bat_crossette',0.28],['bat_crossette',0.72],['bat_willow',0.88]]],
+                [55000,[['rocket',0.04],['chrysanthemum',0.17],['palm',0.30],['willow',0.43],['willow',0.57],['palm',0.70],['chrysanthemum',0.83],['rocket',0.96]]],
+                [57700,[['bat_finale',0.50],['bat_crossette',0.16],['bat_chrysanthemum',0.34],['bat_chrysanthemum',0.66],['bat_crossette',0.84]]]
+            ]
+        },
+        festival: {
+            name: 'Festival Pulse', scene: 'city', sky: 'normal', hour: '23', duration: 62000,
+            palette: ['#ff1744','#ff9100','#ffd54f','#00e676','#2979ff','#e040fb'],
+            events: [
+                [0,'stage_audience_bath',0.50], [500,'co2_pulse_banks',0.50],
+                [2100,'laser_crimson_fan',0.28], [3700,'laser_emerald_scan',0.72],
+                [5300,'pyro_magenta_fan',0.25], [5900,'pyro_magenta_fan',0.50], [6500,'pyro_magenta_fan',0.75],
+                [8200,'co2_chase_left',0.20], [9800,'co2_chase_right',0.80],
+                [11300,'pyro_spark_confetti',0.30], [12200,'pyro_spark_confetti',0.70],
+                [14100,'stage_color_chase',0.50], [15800,'laser_rainbow_beam',0.50],
+                [17800,'pyro_color_fountain',0.25], [18400,'pyro_color_fountain',0.50], [19000,'pyro_color_fountain',0.75],
+                [20900,'co2_twin_columns',0.28], [21600,'co2_twin_columns',0.72],
+                [23200,'pyro_crackle_mine',0.30], [24000,'pyro_crackle_mine',0.50], [24800,'pyro_crackle_mine',0.70],
+                [26700,'laser_white_blade',0.50], [28400,'pyro_mine_finale',0.30], [29200,'pyro_mine_finale',0.50], [30000,'pyro_mine_finale',0.70],
+                [31500,'pyro_sky_crossburst',0.30], [32400,'pyro_sky_crossburst',0.50], [33300,'pyro_sky_crossburst',0.70],
+                [32100,'co2_wall',0.50], [33900,'stage_white_strobe',0.50], [35700,'laser_rainbow_beam',0.50]
+            ],
+            salvos: [
+                [700,[['bat_rainbow',0.15],['bat_fan_fast',0.38],['bat_fan_fast',0.62],['bat_rainbow',0.85]]],
+                [3800,[['rocket',0.11],['peony',0.30],['bat_sweep',0.50],['peony',0.70],['rocket',0.89]]],
+                [6900,[['bat_crossette',0.14],['bat_crossette',0.36],['bat_crossette',0.64],['bat_crossette',0.86]]],
+                [10000,[['bat_z',0.50],['chrysanthemum',0.20],['chrysanthemum',0.80]]],
+                [13200,[['bat_wave',0.50],['rocket',0.17],['peony',0.39],['peony',0.72]]],
+                [16400,[['bat_chrysanthemum',0.12],['chrysanthemum',0.31],['chrysanthemum',0.50],['chrysanthemum',0.69],['bat_chrysanthemum',0.88]]],
+                [19700,[['rocket',0.08],['crossette',0.25],['bat_x',0.50],['crossette',0.75],['rocket',0.92]]],
+                [23000,[['bat_rainbow',0.13],['bat_rainbow',0.35],['bat_rainbow',0.65],['bat_rainbow',0.87]]],
+                [26300,[['bat_v',0.50],['peony',0.19],['chrysanthemum',0.42],['chrysanthemum',0.78]]],
+                [29600,[['bat_cake',0.50],['bat_crossette',0.18],['bat_crossette',0.82]]],
+                [32900,[['rocket',0.06],['peony',0.22],['willow',0.39],['chrysanthemum',0.57],['peony',0.77],['rocket',0.94]]],
+                [36200,[['bat_sweep',0.50],['bat_chrysanthemum',0.15],['bat_chrysanthemum',0.85]]],
+                [39500,[['bat_rainbow',0.10],['bat_crossette',0.28],['chrysanthemum',0.50],['bat_crossette',0.72],['bat_rainbow',0.90]]],
+                [42800,[['rocket',0.08],['peony',0.24],['crossette',0.41],['crossette',0.59],['peony',0.76],['rocket',0.92]]],
+                [46100,[['bat_wave',0.50],['bat_willow',0.18],['bat_willow',0.39],['bat_willow',0.61],['bat_willow',0.82]]],
+                [48700,[['bat_rainbow',0.10],['bat_chrysanthemum',0.25],['chrysanthemum',0.42],['chrysanthemum',0.58],['bat_chrysanthemum',0.75],['bat_rainbow',0.90]]],
+                [51200,[['rocket',0.05],['peony',0.17],['crossette',0.29],['chrysanthemum',0.43],['chrysanthemum',0.57],['crossette',0.71],['peony',0.83],['rocket',0.95]]],
+                [53800,[['bat_x',0.50],['bat_rainbow',0.13],['bat_crossette',0.31],['bat_crossette',0.69],['bat_rainbow',0.87]]],
+                [56200,[['bat_finale',0.50],['bat_chrysanthemum',0.12],['chrysanthemum',0.27],['peony',0.42],['peony',0.58],['chrysanthemum',0.73],['bat_chrysanthemum',0.88]]],
+                [58700,[['rocket',0.04],['peony',0.15],['crossette',0.27],['chrysanthemum',0.39],['willow',0.50],['chrysanthemum',0.61],['crossette',0.73],['peony',0.85],['rocket',0.96]]]
+            ]
+        },
+        grand: {
+            name: 'Mega-Finale: Full Stage', scene: 'city', sky: 'normal', hour: '23', duration: 72000,
+            palette: ['#ffffff','#ffd54f','#ff1744','#00e5ff','#e040fb','#00e676'],
+            events: [
+                [0,'stage_audience_bath',0.50], [300,'co2_lowfog_crawl',0.50],
+                [900,'stage_strobe',0.50], [1300,'pyro_color_fountain',0.18,['#ffffff','#ffd54f']],
+                [1500,'pyro_color_fountain',0.50,['#ffffff','#ff7043']], [1700,'pyro_color_fountain',0.82,['#ffffff','#00e5ff']],
+                [2200,'laser_crimson_fan',0.16,['#ff1744','#ff80ab']], [2200,'laser_emerald_scan',0.50,['#00e676','#b2ff59']],
+                [2200,'laser_white_blade',0.84,['#ffffff','#80d8ff']], [3400,'co2_twin_columns',0.22],
+                [3600,'co2_twin_columns',0.78], [4100,'pyro_cold_spark_wave',0.18],
+                [4600,'pyro_cold_spark_wave',0.50], [5100,'pyro_cold_spark_wave',0.82],
+                [6200,'stage_blinder',0.50], [7100,'pyro_spark_confetti',0.28], [7900,'pyro_spark_confetti',0.72],
+                [8700,'laser_rainbow_beam',0.50,['#ff1744','#ffd54f','#00e676','#00e5ff','#e040fb']],
+                [10100,'co2_chase_left',0.18], [11300,'co2_chase_right',0.82],
+                [12400,'pyro_mine_crown',0.24], [13000,'pyro_mine_crown',0.50], [13600,'pyro_mine_crown',0.76],
+                [14800,'stage_white_strobe',0.50], [16000,'pyro_gold_waterfall',0.50,['#ffd54f','#ffffff']],
+                [17900,'laser_emerald_scan',0.20,['#00e676','#b2ff59']], [17900,'laser_crimson_fan',0.50,['#ff1744','#ff5252']],
+                [17900,'laser_white_blade',0.80,['#ffffff','#e3f2fd']], [19100,'co2_wide_fan',0.50],
+                [20500,'pyro_magenta_fan',0.22], [21100,'pyro_magenta_fan',0.50], [21700,'pyro_magenta_fan',0.78],
+                [23100,'pyro_crackle_mine',0.20], [23700,'pyro_crackle_mine',0.50], [24300,'pyro_crackle_mine',0.80],
+                [25200,'stage_strobe',0.50], [26300,'co2_pulse_banks',0.50], [27800,'pyro_mine_finale',0.20],
+                [28400,'pyro_mine_finale',0.50], [29000,'pyro_mine_finale',0.80],
+                [30200,'laser_crimson_fan',0.14,['#ff1744','#ff9100']], [30200,'laser_emerald_scan',0.38,['#00e676','#00e5ff']],
+                [30200,'laser_rainbow_beam',0.62,['#ffd54f','#ff1744','#e040fb']], [30200,'laser_white_blade',0.86,['#ffffff','#80d8ff']],
+                [31600,'pyro_sky_crossburst',0.25], [32300,'pyro_sky_peony',0.50], [33000,'pyro_sky_willow',0.75],
+                [33900,'co2_wall',0.50], [35000,'stage_white_strobe',0.50], [36400,'pyro_color_fountain',0.16],
+                [36700,'pyro_color_fountain',0.38], [37000,'pyro_color_fountain',0.62], [37300,'pyro_color_fountain',0.84],
+                [38500,'laser_emerald_scan',0.12,['#00e676','#b2ff59']], [38500,'laser_crimson_fan',0.36,['#ff1744','#ff80ab']],
+                [38500,'laser_white_blade',0.64,['#ffffff','#80d8ff']], [38500,'laser_rainbow_beam',0.88,['#ffd54f','#00e5ff','#e040fb']],
+                [39900,'co2_twin_columns',0.20], [40100,'co2_twin_columns',0.80], [41000,'stage_strobe',0.50],
+                [42100,'pyro_spark_rain',0.25,['#ffffff','#ffd54f','#ff1744']], [42800,'pyro_spark_rain',0.75,['#ffffff','#00e5ff','#e040fb']],
+                [44000,'pyro_mine_finale',0.18], [44600,'pyro_mine_finale',0.42], [45200,'pyro_mine_finale',0.58], [45800,'pyro_mine_finale',0.82],
+                [47000,'co2_wall',0.50], [48000,'stage_blinder',0.50],
+                [49300,'laser_crimson_fan',0.10,['#ff1744','#ff9100']], [49300,'laser_emerald_scan',0.30,['#00e676','#00e5ff']],
+                [49300,'laser_white_blade',0.50,['#ffffff','#e3f2fd']], [49300,'laser_rainbow_beam',0.70,['#ffd54f','#e040fb']],
+                [49300,'laser_crimson_fan',0.90,['#ff1744','#ff80ab']], [50600,'stage_white_strobe',0.50],
+                [51900,'pyro_cold_spark_wave',0.16], [52200,'pyro_cold_spark_wave',0.38], [52500,'pyro_cold_spark_wave',0.62], [52800,'pyro_cold_spark_wave',0.84],
+                [54000,'co2_pulse_banks',0.50], [55200,'pyro_sky_crossburst',0.14], [55800,'pyro_sky_peony',0.32],
+                [56400,'pyro_sky_willow',0.50], [57000,'pyro_sky_crossburst',0.68], [57600,'pyro_sky_peony',0.86],
+                [58500,'stage_strobe',0.50], [59200,'co2_wall',0.50],
+                [60600,'laser_crimson_fan',0.12,['#ff1744','#ff9100']], [60600,'laser_emerald_scan',0.31,['#00e676','#00e5ff']],
+                [60600,'laser_white_blade',0.50,['#ffffff','#e3f2fd']], [60600,'laser_rainbow_beam',0.69,['#ffd54f','#e040fb']],
+                [60600,'laser_crimson_fan',0.88,['#ff1744','#ff80ab']], [61700,'stage_white_strobe',0.50],
+                [62800,'pyro_mine_finale',0.14], [63200,'pyro_mine_finale',0.32], [63600,'pyro_mine_finale',0.50],
+                [64000,'pyro_mine_finale',0.68], [64400,'pyro_mine_finale',0.86]
+            ],
+            salvos: [
+                [500,[['bat_fan_fast',0.18],['bat_rainbow',0.50],['bat_fan_fast',0.82]]],
+                [3000,[['rocket',0.10],['peony',0.30],['bat_sweep',0.50],['peony',0.70],['rocket',0.90]]],
+                [6500,[['bat_crossette',0.16],['bat_chrysanthemum',0.36],['bat_chrysanthemum',0.64],['bat_crossette',0.84]]],
+                [9800,[['chrysanthemum',0.14],['peony',0.34],['willow',0.54],['crossette',0.74],['rocket',0.92]]],
+                [13300,[['bat_wave',0.50],['bat_willow',0.18],['bat_willow',0.82]]],
+                [16900,[['rocket',0.08],['peony',0.24],['chrysanthemum',0.42],['chrysanthemum',0.58],['peony',0.76],['rocket',0.92]]],
+                [20100,[['bat_x',0.50],['bat_crossette',0.18],['bat_crossette',0.82]]],
+                [23400,[['bat_rainbow',0.12],['bat_fan_fast',0.30],['bat_crossette',0.50],['bat_fan_fast',0.70],['bat_rainbow',0.88]]],
+                [26900,[['rocket',0.06],['willow',0.22],['chrysanthemum',0.40],['peony',0.60],['willow',0.78],['rocket',0.94]]],
+                [29500,[['bat_chrysanthemum',0.14],['bat_crossette',0.32],['bat_finale',0.50],['bat_crossette',0.68],['bat_chrysanthemum',0.86]]],
+                [32700,[['rocket',0.10],['peony',0.26],['crossette',0.42],['chrysanthemum',0.58],['peony',0.74],['rocket',0.90]]],
+                [35600,[['bat_willow',0.14],['bat_wave',0.50],['bat_willow',0.86]]],
+                [38900,[['rocket',0.08],['chrysanthemum',0.24],['peony',0.40],['willow',0.60],['peony',0.76],['rocket',0.92]]],
+                [41600,[['bat_crossette',0.12],['bat_chrysanthemum',0.30],['bat_x',0.50],['bat_chrysanthemum',0.70],['bat_crossette',0.88]]],
+                [44800,[['rocket',0.05],['peony',0.18],['chrysanthemum',0.32],['willow',0.46],['willow',0.54],['chrysanthemum',0.68],['peony',0.82],['rocket',0.95]]],
+                [47700,[['bat_rainbow',0.10],['bat_crossette',0.26],['bat_chrysanthemum',0.42],['bat_chrysanthemum',0.58],['bat_crossette',0.74],['bat_rainbow',0.90]]],
+                [50500,[['rocket',0.06],['peony',0.20],['crossette',0.34],['bat_finale',0.50],['crossette',0.66],['peony',0.80],['rocket',0.94]]],
+                [53200,[['bat_x',0.50],['bat_willow',0.14],['bat_crossette',0.30],['bat_crossette',0.70],['bat_willow',0.86]]],
+                [55800,[['rocket',0.04],['chrysanthemum',0.16],['peony',0.28],['willow',0.40],['bat_finale',0.50],['willow',0.60],['peony',0.72],['chrysanthemum',0.84],['rocket',0.96]]],
+                [58200,[['bat_crossette',0.10],['bat_chrysanthemum',0.26],['bat_rainbow',0.42],['bat_finale',0.50],['bat_rainbow',0.58],['bat_chrysanthemum',0.74],['bat_crossette',0.90]]],
+                [60200,[['rocket',0.03],['peony',0.13],['crossette',0.23],['chrysanthemum',0.33],['willow',0.43],['bat_finale',0.50],['willow',0.57],['chrysanthemum',0.67],['crossette',0.77],['peony',0.87],['rocket',0.97]]],
+                [62800,[['bat_finale',0.50],['bat_chrysanthemum',0.12],['chrysanthemum',0.25],['peony',0.38],['willow',0.50],['peony',0.62],['chrysanthemum',0.75],['bat_chrysanthemum',0.88]]],
+                [65500,[['rocket',0.02],['peony',0.12],['crossette',0.22],['chrysanthemum',0.32],['willow',0.42],['bat_finale',0.50],['willow',0.58],['chrysanthemum',0.68],['crossette',0.78],['peony',0.88],['rocket',0.98]]],
+                [68300,[['bat_finale',0.50],['bat_rainbow',0.12],['bat_crossette',0.26],['bat_chrysanthemum',0.38],['chrysanthemum',0.50],['bat_chrysanthemum',0.62],['bat_crossette',0.74],['bat_rainbow',0.88]]],
+                [70400,[['rocket',0.03],['peony',0.14],['chrysanthemum',0.25],['crossette',0.36],['willow',0.45],['bat_finale',0.50],['willow',0.55],['crossette',0.64],['chrysanthemum',0.75],['peony',0.86],['rocket',0.97]]]
+            ]
+        },
+        ruby: {
+            name: 'Rubin-Kaskade', scene: 'city', sky: 'blood', hour: '22', duration: 47000,
+            palette: ['#ff1744','#e040fb','#ff4081','#ffd54f'],
+            events: [
+                [0,'stage_magenta_wash',0.50], [500,'co2_lowfog_crawl',0.50],
+                [1900,'pyro_magenta_fan',0.30], [2500,'pyro_magenta_fan',0.70],
+                [4300,'laser_crimson_fan',0.50,['#ff1744','#ff5252','#ff80ab']],
+                [6100,'pyro_crackle_shell',0.28], [6900,'pyro_crackle_shell',0.72],
+                [8700,'co2_twin_columns',0.30], [9400,'co2_twin_columns',0.70],
+                [11100,'pyro_ring_salvo',0.50], [13000,'stage_colorwash',0.50],
+                [15100,'pyro_cyan_arc',0.28,['#e040fb','#ff4081','#ffffff']], [16000,'pyro_cyan_arc',0.72,['#ff1744','#e040fb','#ffffff']],
+                [18000,'laser_emerald_scan',0.50,['#e040fb','#ff4081','#ffffff']],
+                [20100,'pyro_spark_rain',0.35,['#ff1744','#e040fb','#ffd54f']], [21200,'pyro_spark_rain',0.65,['#ff1744','#e040fb','#ffd54f']],
+                [23200,'co2_curtain',0.50], [25100,'pyro_mine_crown',0.30], [26000,'pyro_mine_crown',0.70],
+                [27900,'laser_white_blade',0.50,['#ff1744','#e040fb','#ffffff']],
+                [30000,'pyro_magenta_fan',0.22], [30600,'pyro_magenta_fan',0.50], [31200,'pyro_magenta_fan',0.78],
+                [33100,'pyro_sky_crossburst',0.32], [33900,'pyro_sky_crossburst',0.68],
+                [35000,'pyro_mine_finale',0.30], [35700,'pyro_mine_finale',0.50], [36400,'pyro_mine_finale',0.70], [37400,'co2_wall',0.50]
+            ],
+            salvos: [
+                [3500,[['rocket',0.18],['peony',0.36],['peony',0.64],['rocket',0.82]]],
+                [10200,[['bat_crossette',0.20],['bat_crossette',0.40],['bat_crossette',0.60],['bat_crossette',0.80]]],
+                [17100,[['chrysanthemum',0.20],['peony',0.40],['peony',0.60],['chrysanthemum',0.80]]],
+                [27000,[['bat_fan_fast',0.16],['bat_fan_fast',0.34],['bat_fan_fast',0.50],['bat_fan_fast',0.66],['bat_fan_fast',0.84]]],
+                [38900,[['rocket',0.12],['peony',0.28],['crossette',0.42],['crossette',0.58],['peony',0.72],['rocket',0.88]]],
+                [42700,[['bat_chrysanthemum',0.20],['bat_chrysanthemum',0.40],['bat_chrysanthemum',0.60],['bat_chrysanthemum',0.80]]]
+            ]
+        },
+        arctic: {
+            name: 'Arktischer Sternenfall', scene: 'mountain', sky: 'aurora', hour: '23.5', duration: 49000,
+            palette: ['#80d8ff','#00e5ff','#e8f4ff','#ffffff','#b388ff'],
+            events: [
+                [0,'stage_slow_pulse',0.50], [700,'co2_lowfog_crawl',0.50],
+                [2300,'pyro_cyan_arc',0.25], [3000,'pyro_cyan_arc',0.75],
+                [4700,'laser_emerald_scan',0.50,['#80d8ff','#00e5ff','#ffffff']],
+                [6600,'pyro_white_willow',0.30], [7600,'pyro_white_willow',0.70],
+                [9500,'co2_curtain',0.50], [11300,'aurora',0.50],
+                [13800,'pyro_spark_rain',0.25,['#e8f4ff','#ffffff','#80d8ff']], [14700,'pyro_spark_rain',0.75,['#e8f4ff','#ffffff','#80d8ff']],
+                [16700,'pyro_cold_spark_wave',0.20], [17300,'pyro_cold_spark_wave',0.50], [17900,'pyro_cold_spark_wave',0.80],
+                [19900,'co2_chase_left',0.22], [21500,'co2_chase_right',0.78],
+                [23300,'laser_white_blade',0.50], [25200,'pyro_amber_cascade',0.32,['#80d8ff','#ffffff','#b388ff']], [26200,'pyro_amber_cascade',0.68,['#80d8ff','#ffffff','#b388ff']],
+                [28100,'pyro_gold_waterfall',0.50,['#80d8ff','#e8f4ff','#ffffff']],
+                [30400,'pyro_cyan_arc',0.22], [31100,'pyro_cyan_arc',0.50], [31800,'pyro_cyan_arc',0.78],
+                [33000,'pyro_sky_peony',0.30], [33900,'pyro_sky_peony',0.70],
+                [35000,'co2_wall',0.50], [36600,'laser_rainbow_beam',0.50,['#80d8ff','#00e5ff','#b388ff','#ffffff']], [37800,'pyro_sky_willow',0.50]
+            ],
+            salvos: [
+                [3900,[['rocket',0.18],['peony',0.36],['peony',0.64],['rocket',0.82]]],
+                [8800,[['willow',0.20],['willow',0.50],['willow',0.80]]],
+                [15800,[['bat_willow',0.20],['bat_crossette',0.40],['bat_crossette',0.60],['bat_willow',0.80]]],
+                [22500,[['peony',0.16],['peony',0.32],['peony',0.50],['peony',0.68],['peony',0.84]]],
+                [32600,[['rocket',0.12],['willow',0.30],['willow',0.50],['willow',0.70],['rocket',0.88]]],
+                [41100,[['bat_chrysanthemum',0.20],['bat_chrysanthemum',0.40],['bat_chrysanthemum',0.60],['bat_chrysanthemum',0.80]]]
+            ]
+        },
+        spectrum: {
+            name: 'Farbenfinale', scene: 'city', sky: 'normal', hour: '23', duration: 58000,
+            palette: ['#ff1744','#ff9100','#ffd54f','#00e676','#00e5ff','#2979ff','#e040fb','#ffffff'],
+            events: [
+                [0,'stage_color_chase',0.50], [700,'co2_pulse_banks',0.50],
+                [2200,'pyro_color_fountain',0.25], [2900,'pyro_color_fountain',0.50], [3600,'pyro_color_fountain',0.75],
+                [5200,'laser_crimson_fan',0.25], [6900,'laser_emerald_scan',0.75],
+                [8600,'pyro_magenta_fan',0.30], [9300,'pyro_cyan_arc',0.70],
+                [11100,'co2_wide_fan',0.50], [13000,'pyro_spark_confetti',0.25], [13900,'pyro_spark_confetti',0.75],
+                [15800,'laser_rainbow_beam',0.50], [17800,'pyro_glitter_cascade',0.30], [18700,'pyro_glitter_cascade',0.70],
+                [20600,'co2_chase_left',0.20], [22200,'co2_chase_right',0.80],
+                [24000,'pyro_spark_rain',0.22], [24900,'pyro_gold_waterfall',0.50], [25800,'pyro_spark_rain',0.78],
+                [27800,'laser_white_blade',0.50], [29600,'pyro_cold_spark_wave',0.20], [30200,'pyro_cold_spark_wave',0.50], [30800,'pyro_cold_spark_wave',0.80],
+                [32800,'pyro_crackle_mine',0.25], [33600,'pyro_crackle_mine',0.50], [34400,'pyro_crackle_mine',0.75],
+                [36600,'co2_wall',0.50], [38500,'stage_white_strobe',0.50],
+                [40500,'pyro_mine_finale',0.25], [41200,'pyro_mine_finale',0.50], [41900,'pyro_mine_finale',0.75],
+                [42700,'pyro_sky_peony',0.30], [43100,'pyro_sky_crossburst',0.50], [43500,'pyro_sky_willow',0.70], [44000,'laser_rainbow_beam',0.50]
+            ],
+            salvos: [
+                [4000,[['bat_rainbow',0.18],['bat_fan_fast',0.38],['bat_fan_fast',0.62],['bat_rainbow',0.82]]],
+                [10000,[['rocket',0.10],['peony',0.24],['chrysanthemum',0.42],['chrysanthemum',0.58],['peony',0.76],['rocket',0.90]]],
+                [15100,[['bat_crossette',0.16],['bat_crossette',0.32],['bat_crossette',0.50],['bat_crossette',0.68],['bat_crossette',0.84]]],
+                [23100,[['bat_chrysanthemum',0.12],['chrysanthemum',0.28],['crossette',0.42],['crossette',0.58],['chrysanthemum',0.72],['bat_chrysanthemum',0.88]]],
+                [31800,[['rocket',0.08],['peony',0.20],['willow',0.36],['willow',0.50],['willow',0.64],['peony',0.80],['rocket',0.92]]],
+                [37700,[['bat_rainbow',0.12],['bat_rainbow',0.28],['bat_rainbow',0.44],['bat_rainbow',0.60],['bat_rainbow',0.76],['bat_rainbow',0.90]]],
+                [46200,[['bat_crossette',0.10],['bat_chrysanthemum',0.26],['chrysanthemum',0.42],['chrysanthemum',0.58],['bat_chrysanthemum',0.74],['bat_crossette',0.90]]],
+                [51500,[['rocket',0.06],['peony',0.18],['crossette',0.30],['chrysanthemum',0.42],['chrysanthemum',0.58],['crossette',0.70],['peony',0.82],['rocket',0.94]]]
+            ]
+        }
+    };
+    delete shows.ruby;
+    delete shows.arctic;
+    delete shows.spectrum;
+    let active = null, activeTimers = [];
+    const status = document.getElementById('status');
+    const stop = () => {
+        activeTimers.forEach(clearTimeout); activeTimers = [];
+        if (active) active.classList.remove('on');
+        active = null;
+    };
+    const setLook = show => {
+        const scene = document.getElementById('fxScene'), sky = document.getElementById('fxSky');
+        const time = document.getElementById('fxTime'), preset = document.getElementById('fxPre');
+        if (scene) { scene.value = show.scene; scene.dispatchEvent(new Event('change')); }
+        if (sky) { sky.value = show.sky; sky.dispatchEvent(new Event('change')); }
+        if (preset) preset.value = '';
+        if (time) { time.value = show.hour; time.dispatchEvent(new Event('input')); }
+    };
+    document.querySelectorAll('.curated-show').forEach(button => {
+        button.addEventListener('click', () => {
+            if (active === button) { stop(); if (status) status.textContent = 'Show gestoppt'; return; }
+            stop();
+            const randomShow = document.getElementById('fxShow');
+            if (randomShow && randomShow.classList.contains('on')) randomShow.click();
+            const show = shows[button.dataset.show];
+            if (!show) return;
+            active = button; button.classList.add('on'); setLook(show);
+            if (status) status.textContent = `🎼 ${show.name} beginnt`;
+            const runId = Date.now();
+            let launchIndex = 0;
+            const scheduleSalvo = (delay, entries) => activeTimers.push(setTimeout(() => {
+                if (active !== button) return;
+                entries.forEach(([type, position, colors]) => {
+                    if (!fireworkData[type]) return;
+                    const palette = colors || show.palette || fireworkData[type].colors;
+                    const fw = { type, x: innerWidth * position, y: innerHeight - 70, id: `show-${runId}-${launchIndex++}`, speed: 'medium', colors: palette };
+                    if (extraLaunch[type]) extraLaunch[type](fw, { ...fireworkData[type], colors: palette });
+                    else launchFirework(fw);
+                });
+            }, delay));
+            show.events.forEach(([delay, type, position, colors]) => scheduleSalvo(delay, [[type, position, colors]]));
+            (show.salvos || []).forEach(([delay, entries]) => scheduleSalvo(delay, entries));
+            activeTimers.push(setTimeout(() => {
+                if (active !== button) return;
+                if (status) status.textContent = `✨ ${show.name} ist beendet`;
+                stop();
+            }, show.duration));
+        });
+    });
+})();
+</script>
+<script>
+/* Gemeinsame Sound-Zuordnung für alle Inventar-Effekte und kuratierten Shows. */
+(function () {
+    const kindFor = type => {
+        if (!type) return null;
+        if (['lightning','tesla','goldrain'].includes(type)) return null; // haben bereits Donner, Knistern oder Glitzern
+        if (/^(co2_|organ)/.test(type)) return 'jet';
+        if (/^(laser|lasers$)/.test(type)) return 'laser';
+        if (/^stage_/.test(type)) return 'stage';
+        if (/^pyro_sky_/.test(type)) return 'sky';
+        if (/^pyro_/.test(type)) return 'ground';
+        if (/^(smoke|smokerocket|smokewall|smokering|smokebomb|flare)/.test(type)) return 'smoke';
+        if (/^(confetti|paint)/.test(type)) return 'sparkle';
+        if (/^(fountain|volcano|mine|ground|waterfall|sparkler|strobes|crackling|glitter|roman|romancandle|spinner|frog)/.test(type)) return 'ground';
+        if (/^(boeller|salute|shock|fuse)/.test(type)) return null; // diese Effekte erzeugen ihren Knall selbst
+        if (/^(rocket|giant|battery|multishot|bat_|comet|salute_sequence)/.test(type)) return null; // Aufstieg und Burst sind separat vertont
+        if (/^(aurora|galaxy|nebula|cosmos|supernova|starcollision|ufo|satellite|ghost|blackhole)/.test(type)) return 'sky';
+        return 'sparkle';
+    };
+    const cue = (type, fw) => {
+        const kind = kindFor(type);
+        if (kind && window.fxSoundCue) window.fxSoundCue(kind, kind === 'stage' ? 0.7 : 1);
+    };
+    Object.entries(extraLaunch).forEach(([type, original]) => {
+        if (typeof original !== 'function' || original.__soundTagged) return;
+        const wrapped = function (fw, data) { cue(type, fw); return original.apply(this, arguments); };
+        wrapped.__soundTagged = true;
+        extraLaunch[type] = wrapped;
+    });
+    const originalLaunch = launchFirework;
+    launchFirework = function (fw) {
+        if (fw && !extraLaunch[fw.type]) cue(fw.type, fw);
+        return originalLaunch.apply(this, arguments);
+    };
 })();
 </script>
 </body>
